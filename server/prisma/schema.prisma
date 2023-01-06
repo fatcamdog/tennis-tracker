@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// // User model
+model User {
+    id       Int     @id @default(autoincrement())
+    name     String
+    email    String  @unique
+    password String
+    matches  Match[]
+}
+
+// // Match model
+model Match {
+    id                Int           @id @default(autoincrement())
+    opponent          String
+    won               Boolean
+    finished          Boolean
+    userSets          Int
+    oppSets           Int
+    userGames         Int[]
+    oppGames          Int[]
+    userPoints        Int
+    oppPoints         Int
+    userDisplayPoints String
+    oppDisplayPoints  String
+    trackingMode      TrackingMode
+    numSets           Int
+    createdAt         DateTime      @default(now())
+    duration          Int
+    tiebreak          Boolean
+    serving           Boolean
+    side              PlayingSide
+    suddenDeath       Boolean
+    pointDetails      PointDetail[]
+    user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId            Int
+}
+
+// // Point details model
+model PointDetail {
+    id                Int            @id @default(autoincrement())
+    won               Boolean
+    match             Match          @relation(fields: [matchId], references: [id], onDelete: Cascade)
+    serving           Boolean
+    userGames         Int[]
+    oppGames          Int[]
+    userDisplayPoints String
+    oppDisplayPoints  String
+    unreturned        Boolean?
+    fault             ServeFault?    @default(first)
+    side              PlayingSide?   @default(deuce)
+    location          ShotLocations?
+    stroke            Stroke?
+    method            Method?
+    matchId           Int
+}
+
+// // Possible strings for method, stroke, and tracking mode
+enum Method {
+    ace
+    double_fault
+    winner
+    forced_error
+    unforced_error
+}
+
+enum Stroke {
+    serve
+    forehand_groundstroke
+    backhand_groundstroke
+    forehand_slice
+    backhand_slice
+    forehand_volley
+    backhand_volley
+    forehand_dropshot
+    backhand_dropshot
+    overhead
+}
+
+enum TrackingMode {
+    starting
+    rallying
+    mentality
+}
+
+// // Possible strings for serve fault
+enum ServeFault {
+    first
+    second
+    double
+}
+
+// // Possible sides for playing
+enum PlayingSide {
+    deuce
+    ad
+}
+
+// // Possible locatiosn for shots
+enum ShotLocations {
+    net
+    wide_deuce
+    wide_ad
+    long
+    serve_wide_deuce
+    serve_middle_deuce
+    serve_tee_deuce
+    serve_tee_ad
+    serve_middle_ad
+    serve_wide_ad
+    deep_deuce
+    deep_middle
+    deep_ad
+    short_deuce
+    short_middle
+    short_ad
+    ace
+    double
+}
+
+// // Possible strokes for serve and return
+enum ReturnStrokes {
+    double
+    ace
+    forehand
+    backhand
+}

@@ -110,3 +110,10 @@ export interface IHandleTypeStageProps {
 export interface IHandlePointWonStageProps {
   handlePointWon: (arg0: boolean) => void;
 }
+
+// duration state interface
+export interface IMatchDurationProps {
+  match: IMatch;
+  duration: number;
+  setDuration: any;
+}

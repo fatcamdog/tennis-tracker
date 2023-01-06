@@ -31,6 +31,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     setDuration(match.duration);
   }, [match]);
 
+  // increment every minute
   useEffect(() => {
     let interval: any;
     if (running) {

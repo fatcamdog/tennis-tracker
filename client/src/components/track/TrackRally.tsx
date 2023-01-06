@@ -1,11 +1,13 @@
 import { FC, useState } from 'react';
 
 import { IMatchUserProps } from '../../utils/interfaces';
+
 import RallyCourt from '../court/RallyCourt';
 import MethodStage from '../stages/MethodStage';
 import SideStage from '../stages/SideStage';
 import TypeStage from '../stages/TypeStage';
 import PointWonStage from '../stages/PointWonStage';
+import Timer from './Timer';
 
 const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const [shotLocation, setShotLocation] = useState<string>('');
@@ -19,6 +21,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const [sideStage, setSideStage] = useState<boolean>(false);
   const [typeStage, setTypeStage] = useState<boolean>(false);
   const [pointWonStage, setPointWonStage] = useState<boolean>(false);
+
+  const [duration, setDuration] = useState<number>(0);
 
   // handle when the user clicks on the tennis court diagram
   const handleShotLocation = (location: string): void => {
@@ -85,6 +89,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   const handlePointFinish = (): void => {
     // update local state
+
     // update database
     // reset stages
     setPointWonStage(false);
@@ -94,6 +99,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   return (
     <div>
       <h1>Tracking rallies</h1>
+      <Timer match={match} duration={duration} setDuration={setDuration} />
       {locationStage ? (
         <RallyCourt handleShotLocation={handleShotLocation} />
       ) : (

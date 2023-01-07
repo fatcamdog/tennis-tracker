@@ -63,7 +63,8 @@ export const matchesSlice = createSlice({
         action.payload.fault,
         action.payload.side,
         action.payload.location,
-        action.payload.stroke
+        action.payload.stroke,
+        action.payload.method
       );
     },
   },

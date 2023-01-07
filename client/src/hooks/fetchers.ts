@@ -23,19 +23,17 @@ export const useFetch = (url: string) => {
       // check if user exists
       if (user) {
         try {
-          if (user) {
-            setLoading(true);
-            const { data } = await axios.get<IMatchAllResponse>(url, {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
-            });
-            dispatch(getOngoingMatches(data.ongoingMatches));
-            dispatch(getFinishedMatches(data.finishedMatches));
+          setLoading(true);
+          const { data } = await axios.get<IMatchAllResponse>(url, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          });
+          dispatch(getOngoingMatches(data.ongoingMatches));
+          dispatch(getFinishedMatches(data.finishedMatches));
 
-            if (data.ongoingMatches.length + data.finishedMatches.length === 0)
-              setEmpty(true);
-          }
+          if (data.ongoingMatches.length + data.finishedMatches.length === 0)
+            setEmpty(true);
         } catch (error) {
           setLoading(false);
           if (axios.isAxiosError(error)) setError(error.message);
@@ -66,17 +64,15 @@ export const useFetchOne = (url: string) => {
       // check if user exists
       if (user) {
         try {
-          if (user) {
-            setLoading(true);
-            const { data } = await axios.get<IMatch>(url, {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
-            });
-            dispatch(getTrackedMatch(data));
+          setLoading(true);
+          const { data } = await axios.get<IMatch>(url, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          });
+          dispatch(getTrackedMatch(data));
 
-            if (Object.keys(data).length === 0) setEmpty(true);
-          }
+          if (Object.keys(data).length === 0) setEmpty(true);
         } catch (error) {
           setLoading(false);
           if (axios.isAxiosError(error)) setError(error.message);

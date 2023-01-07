@@ -8,7 +8,8 @@ export default function matchLogic(
   fault: string,
   side: string,
   location: string,
-  stroke: string
+  stroke: string,
+  method: string
 ): IMatch {
   // !! Declaring point, game, set, server, final set, and points for tiebreaker
   let nextPoint: number = 0;
@@ -175,6 +176,7 @@ export default function matchLogic(
   }
 
   // !! Returning match scores, points, games, sets, and end of match
+  console.log(stroke);
   if (won) {
     return {
       ...match,
@@ -198,13 +200,14 @@ export default function matchLogic(
       suddenDeath: match.suddenDeath,
 
       pointDetails: [...match.pointDetails],
-      pointWon: true,
+      pointWon: won,
       unreturned,
       fault,
       pointSide: side,
       location,
       stroke,
       wasServing: match.serving,
+      method,
     };
   } else {
     return {
@@ -236,6 +239,7 @@ export default function matchLogic(
       location,
       stroke,
       wasServing: match.serving,
+      method,
     };
   }
 }

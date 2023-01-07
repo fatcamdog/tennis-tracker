@@ -182,15 +182,15 @@ export const updateMatch = async (req: Request, res: Response) => {
 
         pointDetails: {
           create: {
-            won: pointWon,
-            serving: wasServing,
+            won,
+            serving,
             userGames,
             oppGames,
             userDisplayPoints,
             oppDisplayPoints,
             unreturned,
             fault,
-            side: pointSide,
+            side,
             location,
             stroke,
             method,

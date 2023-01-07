@@ -76,6 +76,8 @@ enum Method {
 
 enum Stroke {
     serve
+    forehand
+    backhand
     forehand_groundstroke
     backhand_groundstroke
     forehand_slice
@@ -85,6 +87,8 @@ enum Stroke {
     forehand_dropshot
     backhand_dropshot
     overhead
+    double
+    ace
 }
 
 enum TrackingMode {

@@ -176,7 +176,6 @@ export default function matchLogic(
   }
 
   // !! Returning match scores, points, games, sets, and end of match
-  console.log(stroke);
   if (won) {
     return {
       ...match,

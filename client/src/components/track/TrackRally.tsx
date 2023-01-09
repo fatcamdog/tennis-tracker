@@ -33,7 +33,23 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const dispatch = useAppDispatch();
 
   // handle when the user clicks on the tennis court diagram
-  const handleShotLocation = (location: string): void => {
+  const handleShotLocation = (location: string) => {
+    // // handle exceptions
+    // double fault exception, no more information needed -> skips rights to end of poitn
+    if (location === 'double') {
+      let won: boolean = !match.serving;
+      let location: string = 'double';
+      let method: string = 'double_fault';
+      let stroke: string = 'serve';
+
+      console.log(won);
+      console.log(location);
+      console.log(method);
+      console.log(stroke);
+
+      return handlePointFinish(won, location, method, stroke);
+    }
+
     // hide location stage and show method stage
     setLocationStage(false);
     setMethodStage(true);
@@ -72,9 +88,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     setShotType(type);
 
     // update shotStroke state
-    if (shotType !== 'overhead' && shotType !== 'serve')
-      setShotStroke(`${shotSide}_${type}`);
-    else setShotStroke(shotSide);
+    setShotStroke(updateStroke(shotSide, type));
   };
 
   const handlePointWon = (won: boolean): void => {
@@ -82,10 +96,29 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     setPointWon(won);
 
     // handle end of the point
-    handlePointFinish(won);
+    handlePointFinish(won, shotLocation, shotMethod, shotStroke);
   };
 
-  const handlePointFinish = async (won: boolean): Promise<void> => {
+  // use stroke side and stroke type to create a stroke: backhand and groundstroke -> backhand_groundstroke
+  const updateStroke = (side: string, type: string): string => {
+    if (
+      type !== 'overhead' &&
+      type !== 'serve' &&
+      side !== 'overhead' &&
+      side !== 'serve'
+    ) {
+      return `${side}_${type}`;
+    } else {
+      return side;
+    }
+  };
+
+  const handlePointFinish = async (
+    won: boolean,
+    location: string,
+    method: string,
+    stroke: string
+  ): Promise<void> => {
     // update local state
     dispatch(
       trackMatch({
@@ -96,7 +129,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
       })
     );
 
-    // update database
+    // send request to database
     if (user) {
       await axios.patch(
         `http://localhost:4000/api/matches/${match.id}`,
@@ -107,9 +140,9 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
           false,
           'double',
           match.side!,
-          shotLocation,
-          shotStroke,
-          shotMethod
+          location,
+          stroke,
+          method
         ),
         {
           headers: {
@@ -120,7 +153,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
       );
     }
 
-    // reset stages
+    // reset
     setPointWonStage(false);
     setLocationStage(true);
   };

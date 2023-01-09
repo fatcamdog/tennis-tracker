@@ -34,18 +34,23 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   // handle when the user clicks on the tennis court diagram
   const handleShotLocation = (location: string) => {
-    // // handle exceptions
-    // double fault exception, no more information needed -> skips rights to end of poitn
+    // // handle exceptions, no more information needed -> skips rights to end of point
+    // ace exception
+    if (location === 'ace') {
+      let won: boolean = match.serving;
+      let location: string = 'ace';
+      let method: string = 'ace';
+      let stroke: string = 'serve';
+
+      return handlePointFinish(won, location, method, stroke);
+    }
+
+    // double fault exception,
     if (location === 'double') {
       let won: boolean = !match.serving;
       let location: string = 'double';
       let method: string = 'double_fault';
       let stroke: string = 'serve';
-
-      console.log(won);
-      console.log(location);
-      console.log(method);
-      console.log(stroke);
 
       return handlePointFinish(won, location, method, stroke);
     }

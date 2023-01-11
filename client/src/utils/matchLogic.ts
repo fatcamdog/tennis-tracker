@@ -9,7 +9,8 @@ export default function matchLogic(
   side: string,
   location: string,
   stroke: string,
-  method: string
+  method: string,
+  hitter: string
 ): IMatch {
   // !! Declaring point, game, set, server, final set, and points for tiebreaker
   let nextPoint: number = 0;
@@ -207,6 +208,7 @@ export default function matchLogic(
       stroke,
       wasServing: match.serving,
       method,
+      hitter,
     };
   } else {
     return {
@@ -239,6 +241,7 @@ export default function matchLogic(
       stroke,
       wasServing: match.serving,
       method,
+      hitter,
     };
   }
 }

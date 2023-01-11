@@ -64,7 +64,8 @@ export const matchesSlice = createSlice({
         action.payload.side,
         action.payload.location,
         action.payload.stroke,
-        action.payload.method
+        action.payload.method,
+        action.payload.hitter
       );
     },
   },

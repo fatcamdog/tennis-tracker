@@ -25,6 +25,7 @@ export interface IMatch {
   pointWon?: boolean;
   pointSide?: string;
   method?: string;
+  hitter?: string;
   wasServing?: boolean;
   unreturned?: boolean;
   fault?: string;
@@ -36,6 +37,7 @@ export interface IMatch {
 interface IPointDetails {
   won?: boolean;
   method?: string;
+  hitter?: string;
   serving?: boolean;
   userGames?: number[];
   oppGames?: number[];

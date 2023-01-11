@@ -62,10 +62,16 @@ model PointDetail {
     location          ShotLocations?
     stroke            Stroke?
     method            Method?
+    hitter            Hitter?
     matchId           Int
 }
 
-// // Possible strings for method, stroke, and tracking mode
+// // Possible strings for method, stroke, and tracking mode, etc
+enum Hitter {
+    user
+    opponent
+}
+
 enum Method {
     ace
     double_fault

@@ -156,6 +156,7 @@ export const updateMatch = async (req: Request, res: Response) => {
       location,
       stroke,
       method,
+      hitter,
       wasServing,
     } = req.body;
     const match = await prisma.match.update({
@@ -182,18 +183,19 @@ export const updateMatch = async (req: Request, res: Response) => {
 
         pointDetails: {
           create: {
-            won,
-            serving,
+            won: pointWon,
+            serving: wasServing,
             userGames,
             oppGames,
             userDisplayPoints,
             oppDisplayPoints,
             unreturned,
             fault,
-            side,
+            side: pointSide,
             location,
             stroke,
             method,
+            hitter,
           },
         },
       },

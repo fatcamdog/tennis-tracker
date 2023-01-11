@@ -15,6 +15,7 @@ import Timer from './Timer';
 
 const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const [shotLocation, setShotLocation] = useState<string>('');
+  const [shotHitter, setShotHitter] = useState<string>('');
   const [shotMethod, setShotMethod] = useState<string>('');
   const [shotSide, setShotSide] = useState<string>('');
   const [shotType, setShotType] = useState<string>('');
@@ -23,6 +24,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const [shotStroke, setShotStroke] = useState<string>('');
 
   const [locationStage, setLocationStage] = useState<boolean>(true);
+  const [hitterStage, setHitterStage] = useState<boolean>(false);
   const [methodStage, setMethodStage] = useState<boolean>(false);
   const [sideStage, setSideStage] = useState<boolean>(false);
   const [typeStage, setTypeStage] = useState<boolean>(false);
@@ -62,6 +64,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     // update shot location
     setShotLocation(location);
   };
+
+  // handle who hit the shot -> then can deduct stats for other player too
 
   // handle the user shot method (winner, foreced error, or unforced error)
   const handleShotMethod = (method: string): void => {
@@ -147,7 +151,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
           match.side!,
           location,
           stroke,
-          method
+          method,
+          shotHitter
         ),
         {
           headers: {

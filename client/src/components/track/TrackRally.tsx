@@ -7,6 +7,7 @@ import { trackMatch } from '../../redux/matches';
 import matchLogic from '../../utils/matchLogic';
 
 import RallyCourt from '../court/RallyCourt';
+import HitterStage from '../stages/HitterStage';
 import MethodStage from '../stages/MethodStage';
 import SideStage from '../stages/SideStage';
 import TypeStage from '../stages/TypeStage';
@@ -37,35 +38,43 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   // handle when the user clicks on the tennis court diagram
   const handleShotLocation = (location: string) => {
     // // handle exceptions, no more information needed -> skips rights to end of point
-    // ace exception
-    if (location === 'ace') {
-      let won: boolean = match.serving;
-      let location: string = 'ace';
-      let method: string = 'ace';
-      let stroke: string = 'serve';
+    // // ace exception
+    // if (location === 'ace') {
+    //   let won: boolean = match.serving;
+    //   let location: string = 'ace';
+    //   let method: string = 'ace';
+    //   let stroke: string = 'serve';
 
-      return handlePointFinish(won, location, method, stroke);
-    }
+    //   return handlePointFinish(won, location, method, stroke);
+    // }
 
-    // double fault exception,
-    if (location === 'double') {
-      let won: boolean = !match.serving;
-      let location: string = 'double';
-      let method: string = 'double_fault';
-      let stroke: string = 'serve';
+    // // double fault exception,
+    // if (location === 'double') {
+    //   let won: boolean = !match.serving;
+    //   let location: string = 'double';
+    //   let method: string = 'double_fault';
+    //   let stroke: string = 'serve';
 
-      return handlePointFinish(won, location, method, stroke);
-    }
+    //   return handlePointFinish(won, location, method, stroke);
+    // }
 
     // hide location stage and show method stage
     setLocationStage(false);
-    setMethodStage(true);
+    setHitterStage(true);
 
     // update shot location
     setShotLocation(location);
   };
 
   // handle who hit the shot -> then can deduct stats for other player too
+  const handleShotHitter = (hitter: string) => {
+    // hide hitter and show method stage
+    setHitterStage(false);
+    setMethodStage(true);
+
+    // update hitter state
+    setShotHitter(hitter);
+  };
 
   // handle the user shot method (winner, foreced error, or unforced error)
   const handleShotMethod = (method: string): void => {
@@ -176,22 +185,32 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
         <RallyCourt handleShotLocation={handleShotLocation} />
       ) : (
         <>
-          {methodStage ? (
-            <MethodStage handleShotMethod={handleShotMethod} />
+          {hitterStage ? (
+            <HitterStage
+              handleShotHitter={handleShotHitter}
+              match={match}
+              user={user}
+            />
           ) : (
             <>
-              {sideStage ? (
-                <SideStage handleShotSide={handleShotSide} />
+              {methodStage ? (
+                <MethodStage handleShotMethod={handleShotMethod} />
               ) : (
                 <>
-                  {typeStage ? (
-                    <TypeStage handleShotType={handleShotType} />
+                  {sideStage ? (
+                    <SideStage handleShotSide={handleShotSide} />
                   ) : (
                     <>
-                      {pointWonStage ? (
-                        <PointWonStage handlePointWon={handlePointWon} />
+                      {typeStage ? (
+                        <TypeStage handleShotType={handleShotType} />
                       ) : (
-                        <div>Something went wrong</div>
+                        <>
+                          {pointWonStage ? (
+                            <PointWonStage handlePointWon={handlePointWon} />
+                          ) : (
+                            <div>Something went wrong</div>
+                          )}
+                        </>
                       )}
                     </>
                   )}

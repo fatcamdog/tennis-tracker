@@ -97,6 +97,12 @@ export interface IHandleShotLocationProps {
   handleShotLocation: (arg0: string) => void;
 }
 
+export interface IHandleHitterStageProps {
+  handleShotHitter: (arg0: string) => void;
+  match: IMatch;
+  user: IUser;
+}
+
 export interface IHandleMethodStageProps {
   handleShotMethod: (arg0: string) => void;
 }

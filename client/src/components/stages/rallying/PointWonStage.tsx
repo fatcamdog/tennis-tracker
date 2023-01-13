@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IHandlePointWonStageProps } from '../../utils/interfaces';
+import { IHandlePointWonStageProps } from '../../../utils/interfaces';
 
 const PointWonStage: FC<IHandlePointWonStageProps> = ({ handlePointWon }) => {
   return (

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IHandleSideStageProps } from '../../utils/interfaces';
+import { IHandleSideStageProps } from '../../../utils/interfaces';
 
 const SideStage: FC<IHandleSideStageProps> = ({ handleShotSide }) => {
   return (

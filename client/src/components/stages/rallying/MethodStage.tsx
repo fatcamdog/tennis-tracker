@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IHandleMethodStageProps } from '../../utils/interfaces';
+import { IHandleMethodStageProps } from '../../../utils/interfaces';
 
 const MethodStage: FC<IHandleMethodStageProps> = ({
   handleShotMethod,

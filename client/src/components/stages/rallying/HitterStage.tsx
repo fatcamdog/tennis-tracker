@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IHandleHitterStageProps } from '../../utils/interfaces';
+import { IHandleHitterStageProps } from '../../../utils/interfaces';
 
 const HitterStage: FC<IHandleHitterStageProps> = ({
   handleShotHitter,

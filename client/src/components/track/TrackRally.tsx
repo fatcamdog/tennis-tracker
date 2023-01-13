@@ -7,11 +7,11 @@ import { trackMatch } from '../../redux/matches';
 import matchLogic from '../../utils/matchLogic';
 
 import RallyCourt from '../court/RallyCourt';
-import HitterStage from '../stages/HitterStage';
-import MethodStage from '../stages/MethodStage';
-import SideStage from '../stages/SideStage';
-import TypeStage from '../stages/TypeStage';
-import PointWonStage from '../stages/PointWonStage';
+import HitterStage from '../stages/rallying/HitterStage';
+import MethodStage from '../stages/rallying/MethodStage';
+import SideStage from '../stages/rallying/SideStage';
+import TypeStage from '../stages/rallying/TypeStage';
+import PointWonStage from '../stages/rallying/PointWonStage';
 import Timer from './Timer';
 
 const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
@@ -206,6 +206,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
           'double',
           match.side!,
           location,
+          'ace',
+          'ace',
           stroke,
           method,
           hitter

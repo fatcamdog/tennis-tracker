@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IHandleTypeStageProps } from '../../utils/interfaces';
+import { IHandleTypeStageProps } from '../../../utils/interfaces';
 
 const TypeStage: FC<IHandleTypeStageProps> = ({ handleShotType }) => {
   return (

@@ -9,7 +9,7 @@ export default function matchLogic(
   side: string,
   location: string,
   firstServeLocation: string,
-  secondServeLocation: string | null,
+  secondServeLocation: string,
   stroke: string,
   method: string,
   hitter: string
@@ -211,6 +211,8 @@ export default function matchLogic(
       wasServing: match.serving,
       method,
       hitter,
+      firstServeLocation,
+      secondServeLocation,
     };
   } else {
     return {
@@ -244,6 +246,8 @@ export default function matchLogic(
       wasServing: match.serving,
       method,
       hitter,
+      firstServeLocation,
+      secondServeLocation,
     };
   }
 }

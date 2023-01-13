@@ -39,8 +39,6 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   // TODO remove overhead and serve from side
 
-  // TODO remove won or lost option
-
   // handle when the user clicks on the tennis court diagram
   const handleShotLocation = (location: string, inPlay: boolean) => {
     // handle exception -> ace
@@ -106,6 +104,23 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
     // update shot side
     setShotSide(side);
+
+    // handle exception -> overhead
+    if (side === 'overhead' || side === 'serve') {
+      setTypeStage(false);
+      setPointWonStage(true);
+
+      // handle exception -> shot out
+      if (!shotInPlay) {
+        handlePointFinish(
+          shotHitter === 'user' ? false : true,
+          shotLocation,
+          shotHitter,
+          shotMethod,
+          side
+        );
+      }
+    }
   };
 
   // handle what type of shot user hit (groundstroke, volley, slice, dropshot, overhead, or serve)
@@ -119,7 +134,6 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
         shotMethod,
         updateStroke(shotSide, type)
       );
-      // handlePointFinish(won, shotLocation, shotHitter, shotMethod, shotStroke);
     }
 
     // hide type stage and shown point won stage
@@ -133,7 +147,18 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     setShotStroke(updateStroke(shotSide, type));
   };
 
-  const handlePointWon = (won: boolean): void => {
+  const handlePointWon = (won: boolean) => {
+    // handle exception -> serve or overhead
+    if (shotSide === 'overhead' || shotSide === 'serve') {
+      return handlePointFinish(
+        won,
+        shotLocation,
+        shotHitter,
+        shotMethod,
+        shotSide
+      );
+    }
+
     // update point won
     setPointWon(won);
 
@@ -143,12 +168,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   // use stroke side and stroke type to create a stroke: backhand and groundstroke -> backhand_groundstroke
   const updateStroke = (side: string, type: string): string => {
-    if (
-      type !== 'overhead' &&
-      type !== 'serve' &&
-      side !== 'overhead' &&
-      side !== 'serve'
-    ) {
+    if (side !== 'overhead' && side !== 'serve') {
       // returns side_type -> forehand_backhand
       return `${side}_${type}`;
     } else {

@@ -31,18 +31,6 @@ const TypeStage: FC<IHandleTypeStageProps> = ({ handleShotType }) => {
         >
           Dropshot
         </button>
-        <button
-          className="btn btn-accent"
-          onClick={() => handleShotType('overhead')}
-        >
-          Overhead
-        </button>
-        <button
-          className="btn btn-accent"
-          onClick={() => handleShotType('serve')}
-        >
-          Serve
-        </button>
       </div>
     </div>
   );

@@ -19,6 +19,7 @@ const SideStage: FC<IHandleSideStageProps> = ({ handleShotSide }) => {
         >
           Backhand
         </button>
+        <p>Or</p>
         <button
           className="btn btn-accent"
           onClick={() => handleShotSide('overhead')}

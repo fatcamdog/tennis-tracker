@@ -25,8 +25,8 @@ const Timer: FC<IMatchDurationProps> = ({ match, duration, setDuration }) => {
 
   return (
     <div>
-      <p>Timer part</p>
-      <div>{duration}</div>
+      <h1>Timer</h1>
+      <p>{duration}</p>
       <div>
         {running ? (
           <button className="btn btn-accent" onClick={() => setRunning(false)}>

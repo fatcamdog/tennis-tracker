@@ -35,15 +35,21 @@ export default function Tracker() {
                 <>
                   <TrackDetails match={match} />
                   {match.trackingMode === 'starting' ? (
-                    <TrackServe match={match} user={user!} />
+                    <div>
+                      <h1>Tracking Serve</h1>
+                      <TrackServe match={match} user={user!} />
+                    </div>
                   ) : (
                     <>
                       {match.trackingMode === 'rallying' ? (
-                        <TrackRally match={match} user={user!} />
+                        <div>
+                          <h1>Tracking Rallies</h1>
+                          <TrackRally match={match} user={user!} />
+                        </div>
                       ) : (
                         <>
                           {match.trackingMode === 'mentality' ? (
-                            <div>Mentality</div>
+                            <h1>Tracking Mentality</h1>
                           ) : (
                             <div>Something went wrong</div>
                           )}

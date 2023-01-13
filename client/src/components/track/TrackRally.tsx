@@ -37,8 +37,6 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   const dispatch = useAppDispatch();
 
-  // TODO remove overhead and serve from side
-
   // handle when the user clicks on the tennis court diagram
   const handleShotLocation = (location: string, inPlay: boolean) => {
     // handle exception -> ace
@@ -228,7 +226,6 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   return (
     <div>
-      <h1>Tracking rallies</h1>
       <Timer match={match} duration={duration} setDuration={setDuration} />
       {locationStage ? (
         <RallyCourt handleShotLocation={handleShotLocation} />

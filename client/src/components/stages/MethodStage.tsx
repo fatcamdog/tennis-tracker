@@ -2,7 +2,10 @@ import { FC } from 'react';
 
 import { IHandleMethodStageProps } from '../../utils/interfaces';
 
-const MethodStage: FC<IHandleMethodStageProps> = ({ handleShotMethod }) => {
+const MethodStage: FC<IHandleMethodStageProps> = ({
+  handleShotMethod,
+  shotInPlay,
+}) => {
   return (
     <div>
       <p>What was the result of your last shot?</p>
@@ -19,12 +22,16 @@ const MethodStage: FC<IHandleMethodStageProps> = ({ handleShotMethod }) => {
         >
           Forced error
         </button>
-        <button
-          className="btn btn-accent"
-          onClick={() => handleShotMethod('winner')}
-        >
-          Winner
-        </button>
+        {!shotInPlay ? (
+          <></>
+        ) : (
+          <button
+            className="btn btn-accent"
+            onClick={() => handleShotMethod('winner')}
+          >
+            Winner
+          </button>
+        )}
       </div>
     </div>
   );

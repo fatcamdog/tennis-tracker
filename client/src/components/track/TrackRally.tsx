@@ -39,7 +39,6 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   // TODO remove overhead and serve from side
 
-  // TODO remove winner option
   // TODO remove won or lost option
 
   // handle when the user clicks on the tennis court diagram
@@ -111,6 +110,18 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   // handle what type of shot user hit (groundstroke, volley, slice, dropshot, overhead, or serve)
   const handleShotType = (type: string): void => {
+    // handle exception -> shot out
+    if (!shotInPlay) {
+      handlePointFinish(
+        shotHitter === 'user' ? false : true,
+        shotLocation,
+        shotHitter,
+        shotMethod,
+        updateStroke(shotSide, type)
+      );
+      // handlePointFinish(won, shotLocation, shotHitter, shotMethod, shotStroke);
+    }
+
     // hide type stage and shown point won stage
     setTypeStage(false);
     setPointWonStage(true);
@@ -210,7 +221,10 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
           ) : (
             <>
               {methodStage ? (
-                <MethodStage handleShotMethod={handleShotMethod} />
+                <MethodStage
+                  handleShotMethod={handleShotMethod}
+                  shotInPlay={shotInPlay}
+                />
               ) : (
                 <>
                   {sideStage ? (

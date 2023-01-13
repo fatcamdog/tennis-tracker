@@ -32,6 +32,8 @@ export interface IMatch {
   side?: string;
   location?: string;
   stroke?: string;
+  firstServeLocation?: string;
+  secondServeLocation?: string;
 }
 
 interface IPointDetails {
@@ -48,6 +50,8 @@ interface IPointDetails {
   side?: string;
   location?: string;
   stroke?: string;
+  firstServeLocation?: string;
+  secondServeLocation?: string;
 }
 
 export interface IMatchProps {

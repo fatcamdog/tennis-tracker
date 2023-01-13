@@ -8,6 +8,8 @@ export default function matchLogic(
   fault: string,
   side: string,
   location: string,
+  firstServeLocation: string,
+  secondServeLocation: string | null,
   stroke: string,
   method: string,
   hitter: string

@@ -158,6 +158,8 @@ export const updateMatch = async (req: Request, res: Response) => {
       method,
       hitter,
       wasServing,
+      firstServeLocation,
+      secondServeLocation,
     } = req.body;
 
     const match = await prisma.match.update({
@@ -197,6 +199,8 @@ export const updateMatch = async (req: Request, res: Response) => {
             stroke,
             method,
             hitter,
+            firstServeLocation,
+            secondServeLocation,
           },
         },
       },

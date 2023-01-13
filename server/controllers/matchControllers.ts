@@ -159,6 +159,7 @@ export const updateMatch = async (req: Request, res: Response) => {
       hitter,
       wasServing,
     } = req.body;
+
     const match = await prisma.match.update({
       where: { id: parseInt(id) },
       data: {

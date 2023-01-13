@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector } from '../../hooks/reduxHooks';
 import { useFetchOne } from '../../hooks/fetchers';
 import OngoingDetails from '../matches/OngoingDetails';
 import TrackDetails from './TrackDetails';

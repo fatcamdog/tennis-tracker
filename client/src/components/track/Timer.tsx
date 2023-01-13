@@ -28,9 +28,15 @@ const Timer: FC<IMatchDurationProps> = ({ match, duration, setDuration }) => {
       <p>Timer part</p>
       <div>{duration}</div>
       <div>
-        <button onClick={() => setRunning(true)}>Start</button>
-        <button onClick={() => setRunning(false)}>Stop</button>
-        <button onClick={() => setDuration(0)}>Reset</button>
+        {running ? (
+          <button className="btn btn-accent" onClick={() => setRunning(false)}>
+            Pause Timer
+          </button>
+        ) : (
+          <button className="btn btn-accent" onClick={() => setRunning(true)}>
+            Resume Timer
+          </button>
+        )}
       </div>
     </div>
   );

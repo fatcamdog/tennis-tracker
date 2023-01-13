@@ -23,6 +23,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const [pointWon, setPointWon] = useState<boolean>(false);
   // stroke will be combination of side and type -> forehand_groundstroke
   const [shotStroke, setShotStroke] = useState<string>('');
+  // chekc if shot was in play or not
+  const [shotInPlay, setShotInPlay] = useState<boolean>(true);
 
   const [locationStage, setLocationStage] = useState<boolean>(true);
   const [hitterStage, setHitterStage] = useState<boolean>(false);
@@ -35,28 +37,39 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   const dispatch = useAppDispatch();
 
+  // TODO remove overhead and serve from side
+
+  // TODO remove winner option
+  // TODO remove won or lost option
+
   // handle when the user clicks on the tennis court diagram
-  const handleShotLocation = (location: string) => {
-    // // handle exceptions, no more information needed -> skips rights to end of point
-    // // ace exception
-    // if (location === 'ace') {
-    //   let won: boolean = match.serving;
-    //   let location: string = 'ace';
-    //   let method: string = 'ace';
-    //   let stroke: string = 'serve';
+  const handleShotLocation = (location: string, inPlay: boolean) => {
+    // handle exception -> ace
+    if (location === 'ace') {
+      return handlePointFinish(
+        match.serving,
+        'ace',
+        `${match.serving ? 'user' : 'opponent'}`,
+        'ace',
+        'serve'
+      );
+    }
 
-    //   return handlePointFinish(won, location, method, stroke);
-    // }
+    // handle exception -> double fault
+    if (location === 'double') {
+      return handlePointFinish(
+        !match.serving,
+        'double',
+        `${match.serving ? 'user' : 'opponent'}`,
+        'double_fault',
+        'serve'
+      );
+    }
 
-    // // double fault exception,
-    // if (location === 'double') {
-    //   let won: boolean = !match.serving;
-    //   let location: string = 'double';
-    //   let method: string = 'double_fault';
-    //   let stroke: string = 'serve';
-
-    //   return handlePointFinish(won, location, method, stroke);
-    // }
+    // handle exception -> shot out
+    if (!inPlay) {
+      setShotInPlay(false);
+    }
 
     // hide location stage and show method stage
     setLocationStage(false);
@@ -114,7 +127,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     setPointWon(won);
 
     // handle end of the point
-    handlePointFinish(won, shotLocation, shotMethod, shotStroke);
+    handlePointFinish(won, shotLocation, shotHitter, shotMethod, shotStroke);
   };
 
   // use stroke side and stroke type to create a stroke: backhand and groundstroke -> backhand_groundstroke
@@ -125,8 +138,10 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
       side !== 'overhead' &&
       side !== 'serve'
     ) {
+      // returns side_type -> forehand_backhand
       return `${side}_${type}`;
     } else {
+      // unless it is overhead or serve
       return side;
     }
   };
@@ -134,6 +149,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const handlePointFinish = async (
     won: boolean,
     location: string,
+    hitter: string,
     method: string,
     stroke: string
   ): Promise<void> => {
@@ -161,7 +177,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
           location,
           stroke,
           method,
-          shotHitter
+          hitter
         ),
         {
           headers: {

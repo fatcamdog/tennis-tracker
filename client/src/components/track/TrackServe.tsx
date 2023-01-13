@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks/reduxHooks';
 import { trackMatch } from '../../redux/matches';
 import { IMatchUserProps } from '../../utils/interfaces';
 
-// TODO change return shot wide locations to be deuce and add
+// TODO add forst serve and second serve fields
 // Form to input data about serve and return of a point
 const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   const [duration, setDuration] = useState<number>(0);
@@ -75,7 +75,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
                 match.side!,
                 location,
                 'double',
-                'ace'
+                'ace',
+                'user'
               ),
               {
                 headers: {
@@ -122,7 +123,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
               match.side!,
               location,
               'ace',
-              'ace'
+              'ace',
+              'user'
             ),
             {
               headers: {
@@ -162,7 +164,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
               match.side!,
               location,
               'double',
-              'ace'
+              'ace',
+              'user'
             ),
             {
               headers: {
@@ -232,7 +235,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
             match.side!,
             location,
             stroke,
-            'ace'
+            'ace',
+            'user'
           ),
           {
             headers: {
@@ -273,7 +277,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
             match.side!,
             location,
             stroke,
-            'ace'
+            'ace',
+            'user'
           ),
           {
             headers: {
@@ -332,7 +337,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
           match.side!,
           location,
           stroke,
-          'ace'
+          'ace',
+          'user'
         ),
         {
           headers: {

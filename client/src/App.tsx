@@ -19,81 +19,57 @@ import { useLogout } from './hooks/authHooks';
 import './index.css';
 
 const ProtectedRoute: FC<IUserState> = ({ user }) => {
-    if (!user) return <Navigate to="/login" replace={true} />;
-    return <Outlet />;
+  if (!user) return <Navigate to="/login" replace={true} />;
+  return <Outlet />;
 };
 
 export default function App() {
-    const [rendered, setRendered] = useState<boolean>(false);
+  const [rendered, setRendered] = useState<boolean>(false);
 
-    const { user } = useAppSelector((state) => state.auth);
-    const dispatch = useAppDispatch();
-    const { logoutUser } = useLogout();
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const { logoutUser } = useLogout();
 
-    // logout user
-    const handleLogout = () => {
-        logoutUser();
-    };
+  // logout user
+  const handleLogout = () => {
+    logoutUser();
+  };
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user')!);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user')!);
 
-        if (user) dispatch(login(user));
-        setRendered(true);
-    }, []);
+    if (user) dispatch(login(user));
+    setRendered(true);
+  }, []);
 
-    return (
-        <div>
-            <Navbar user={user!} />
-            <div>
-                <Routes>
-                    {rendered ? (
-                        <Route element={<ProtectedRoute user={user} />}>
-                            <Route path="/" element={<Matches />} />
-                            <Route path="/matches/:id" element={<Match />} />
-                            <Route
-                                path="/matches/edit/:id"
-                                element={<EditMatch />}
-                            />
-                            <Route
-                                path="/matches/create"
-                                element={<CreateMatch />}
-                            />
-                            <Route
-                                path="/matches/track/:id"
-                                element={<Tracker />}
-                            />
-                            <Route
-                                path="/matches/analytics/:id"
-                                element={<Analytics />}
-                            />
-                        </Route>
-                    ) : (
-                        <></>
-                    )}
-                    <Route
-                        path="/signup"
-                        element={
-                            !user ? (
-                                <Signup />
-                            ) : (
-                                <Navigate to="/" replace={true} />
-                            )
-                        }
-                    />
-                    <Route
-                        path="/login"
-                        element={
-                            !user ? (
-                                <Login />
-                            ) : (
-                                <Navigate to="/" replace={true} />
-                            )
-                        }
-                    />
-                    <Route path="*" element={<p>404 page</p>} />
-                </Routes>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar user={user!} />
+      <div>
+        <Routes>
+          {rendered ? (
+            <Route element={<ProtectedRoute user={user} />}>
+              <Route path="/" element={<Matches />} />
+              <Route path="/matches/:id" element={<Match />} />
+              <Route path="/matches/edit/:id" element={<EditMatch />} />
+              <Route path="/matches/create" element={<CreateMatch />} />
+              <Route path="/matches/track/:id" element={<Tracker />} />
+              <Route path="/matches/analytics/:id" element={<Analytics />} />
+            </Route>
+          ) : (
+            <></>
+          )}
+          <Route
+            path="/signup"
+            element={!user ? <Signup /> : <Navigate to="/" replace={true} />}
+          />
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" replace={true} />}
+          />
+          <Route path="*" element={<p>404 page</p>} />
+        </Routes>
+      </div>
+    </div>
+  );
 }

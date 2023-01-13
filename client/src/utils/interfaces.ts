@@ -94,7 +94,7 @@ export interface IDuration {
 
 // // Functions for updating point
 export interface IHandleShotLocationProps {
-  handleShotLocation: (arg0: string) => void;
+  handleShotLocation: (arg0: string, arg1: boolean) => void;
 }
 
 export interface IHandleHitterStageProps {

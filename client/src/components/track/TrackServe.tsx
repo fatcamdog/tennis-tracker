@@ -84,10 +84,22 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   };
 
   const handleShotStroke = (stroke: string) => {
+    // skip point won stage if serve was unreturned
+    if (!shotReturned) {
+      handlePointFinish(
+        match.serving,
+        serveFault,
+        firstServeLocation,
+        secondServeLocation,
+        shotReturned,
+        stroke
+      );
+    }
+
     // update stroke stage
     setShotStroke(stroke);
 
-    // hide stroke stage and sow point won stage
+    // hide stroke stage and show point won stage
     setStrokeStage(false);
     setPointWonStage(true);
   };

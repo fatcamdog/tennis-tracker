@@ -139,3 +139,13 @@ export interface IHandleServeLocationProps {
 export interface IHandleServeReturnedProps {
   handleShotReturned: (arg0: boolean) => void;
 }
+
+export interface IHandleShotStrokeProps {
+  handleShotStroke: (arg0: string) => void;
+}
+
+export interface IHandleStartingPointWonProps {
+  handlePointWon: (arg0: boolean) => void;
+  match: IMatch;
+  user: IUser;
+}

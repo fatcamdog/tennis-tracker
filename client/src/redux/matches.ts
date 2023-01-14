@@ -59,10 +59,12 @@ export const matchesSlice = createSlice({
         action.payload.pointWon,
         action.payload.match,
         action.payload.duration,
-        action.payload.unreturned,
+        action.payload.returned,
         action.payload.fault,
         action.payload.side,
         action.payload.location,
+        action.payload.firstServeLocation,
+        action.payload.secondServeLocation,
         action.payload.stroke,
         action.payload.method,
         action.payload.hitter

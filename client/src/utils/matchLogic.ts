@@ -4,7 +4,7 @@ export default function matchLogic(
   won: boolean,
   match: IMatch,
   duration: number,
-  unreturned: boolean,
+  returned: boolean,
   fault: string,
   side: string,
   location: string,
@@ -203,7 +203,7 @@ export default function matchLogic(
 
       pointDetails: [...match.pointDetails],
       pointWon: won,
-      unreturned,
+      returned,
       fault,
       pointSide: side,
       location,
@@ -238,7 +238,7 @@ export default function matchLogic(
 
       pointDetails: [...match.pointDetails],
       pointWon: won,
-      unreturned,
+      returned,
       fault,
       pointSide: side,
       location,

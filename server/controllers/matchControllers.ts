@@ -150,7 +150,7 @@ export const updateMatch = async (req: Request, res: Response) => {
       side,
 
       pointWon,
-      unreturned,
+      returned,
       fault,
       pointSide,
       location,
@@ -192,7 +192,7 @@ export const updateMatch = async (req: Request, res: Response) => {
             oppGames,
             userDisplayPoints,
             oppDisplayPoints,
-            unreturned,
+            returned,
             fault,
             side: pointSide,
             location,

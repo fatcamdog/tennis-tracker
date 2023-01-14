@@ -56,7 +56,7 @@ model PointDetail {
     oppGames            Int[]
     userDisplayPoints   String
     oppDisplayPoints    String
-    unreturned          Boolean?
+    returned            Boolean?
     fault               ServeFault?    @default(first)
     side                PlayingSide?   @default(deuce)
     location            ShotLocations?

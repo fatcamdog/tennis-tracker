@@ -50,7 +50,15 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
         // update serve location
         setSecondServeLocation(location);
 
-        // TODO reflect point changes
+        // point finished after double fault
+        return handlePointFinish(
+          !match.serving,
+          'double',
+          firstServeLocation,
+          location,
+          false,
+          'double'
+        );
       }
     } else {
       // serve goes in
@@ -73,7 +81,6 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     // hide returned stage and show stroke stage
     setReturnedStage(false);
     setStrokeStage(true);
-    setSecondServeLocation('bypass');
   };
 
   const handleShotStroke = (stroke: string) => {
@@ -144,6 +151,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     // reset for next point
     setPointWonStage(false);
     setServeLocationStage(true);
+    setSecondServeLocation('bypass');
+    setServeFault('first');
   };
 
   return (

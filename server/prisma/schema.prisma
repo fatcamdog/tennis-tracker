@@ -97,7 +97,6 @@ enum Stroke {
     overhead
     double
     ace
-    bypass
 }
 
 enum TrackingMode {
@@ -141,6 +140,7 @@ enum ShotLocations {
     short_ad
     ace
     double
+    bypass
 }
 
 // // Possible strokes for serve and return

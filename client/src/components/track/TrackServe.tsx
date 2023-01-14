@@ -35,8 +35,6 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
 
   // handle when the user clicks a spot for their serve
   const handleServeLocation = (location: string, inPlay: boolean) => {
-    console.log(location, inPlay);
-
     // check if serve went in
     if (!inPlay) {
       if (serveFault === 'first') {
@@ -75,6 +73,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     // hide returned stage and show stroke stage
     setReturnedStage(false);
     setStrokeStage(true);
+    setSecondServeLocation('bypass');
   };
 
   const handleShotStroke = (stroke: string) => {
@@ -103,6 +102,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     );
   };
 
+  // called when point is finished
   const handlePointFinish = async (
     won: boolean,
     fault: string,

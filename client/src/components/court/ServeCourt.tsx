@@ -78,6 +78,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
         <div className="flex items-end p-2 bg-blue-400 grid-in-left-behind"></div>
         <div className="flex items-end p-2 bg-blue-400 grid-in-right-behind">
           <button
+            onClick={() => handleServeLocation('long', false)}
             className={`flex items-center justify-center h-12 rounded grow ${
               'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
@@ -87,6 +88,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
         </div>
         <div className="flex justify-end p-2 bg-blue-400 outline outline-2 outline-white grid-in-deuce">
           <button
+            onClick={() => handleServeLocation('serve_wide_tee', false)}
             className={`flex items-center justify-center w-1/3 rounded ${
               'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
@@ -95,12 +97,22 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
           </button>
         </div>
         <div className="flex gap-2 p-2 bg-blue-400 outline outline-2 outline-white grid-in-ad">
-          <button className="bg-green-500 rounded grow"></button>
-          <button className="bg-green-500 rounded grow"></button>
-          <button className="bg-green-500 rounded grow"></button>
+          <button
+            onClick={() => handleServeLocation('serve_tee_ad', true)}
+            className="bg-green-500 rounded grow"
+          ></button>
+          <button
+            onClick={() => handleServeLocation('serve_middle_ad', true)}
+            className="bg-green-500 rounded grow"
+          ></button>
+          <button
+            onClick={() => handleServeLocation('serve_wide_ad', true)}
+            className="bg-green-500 rounded grow"
+          ></button>
         </div>
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-right-alley">
           <button
+            onClick={() => handleServeLocation('serve_wide_wide', false)}
             className={`absolute flex items-center justify-center rounded inset-2 top-1/2 ${
               'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
@@ -110,6 +122,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
         </div>
       </div>
       <button
+        onClick={() => handleServeLocation('net', false)}
         className={`h-12 mt-2 rounded grid-in-net ${
           'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
         }`}

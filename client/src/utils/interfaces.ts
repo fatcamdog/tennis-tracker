@@ -96,7 +96,7 @@ export interface IDuration {
   duration: number;
 }
 
-// // Functions for updating point
+// // Functions for updating rally point
 export interface IHandleShotLocationProps {
   handleShotLocation: (arg0: string, arg1: boolean) => void;
 }
@@ -129,4 +129,9 @@ export interface IMatchDurationProps {
   match: IMatch;
   duration: number;
   setDuration: any;
+}
+
+// // Functions for updating serve point
+export interface IHandleServeLocationProps {
+  handleServeLocation: (arg0: string, arg1: boolean) => void;
 }

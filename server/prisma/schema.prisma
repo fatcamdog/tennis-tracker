@@ -124,6 +124,8 @@ enum ShotLocations {
     wide_deuce
     wide_ad
     long
+    serve_wide_wide
+    serve_wide_tee
     serve_wide_deuce
     serve_middle_deuce
     serve_tee_deuce

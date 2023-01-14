@@ -4,6 +4,7 @@ import { IHandleServeLocationProps } from '../../utils/interfaces';
 
 export const DeuceSide: FC<IHandleServeLocationProps> = ({
   handleServeLocation,
+  fault,
 }) => {
   return (
     <div>
@@ -12,7 +13,7 @@ export const DeuceSide: FC<IHandleServeLocationProps> = ({
           <button
             onClick={() => handleServeLocation('serve_wide_wide', false)}
             className={`absolute flex items-center justify-center rounded inset-2 top-1/2 ${
-              'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+              fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
           >
             <p className="-rotate-90">Wide</p>
@@ -22,7 +23,7 @@ export const DeuceSide: FC<IHandleServeLocationProps> = ({
           <button
             onClick={() => handleServeLocation('long', false)}
             className={`flex items-center justify-center h-12 grow ${
-              'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+              fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
           >
             <p>Long</p>
@@ -47,7 +48,7 @@ export const DeuceSide: FC<IHandleServeLocationProps> = ({
           <button
             onClick={() => handleServeLocation('serve_wide_tee', false)}
             className={`flex items-center justify-center w-1/3 rounded ${
-              'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+              fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
           >
             <p className="rotate-90">Wide</p>
@@ -58,7 +59,7 @@ export const DeuceSide: FC<IHandleServeLocationProps> = ({
       <button
         onClick={() => handleServeLocation('net', false)}
         className={`h-12 mt-2 rounded grid-in-net ${
-          'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+          fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
         }`}
         style={{ width: '42rem' }}
       >
@@ -70,6 +71,7 @@ export const DeuceSide: FC<IHandleServeLocationProps> = ({
 
 export const AdSide: FC<IHandleServeLocationProps> = ({
   handleServeLocation,
+  fault,
 }) => {
   return (
     <div>
@@ -80,7 +82,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
           <button
             onClick={() => handleServeLocation('long', false)}
             className={`flex items-center justify-center h-12 rounded grow ${
-              'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+              fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
           >
             <p>Long</p>
@@ -90,7 +92,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
           <button
             onClick={() => handleServeLocation('serve_wide_tee', false)}
             className={`flex items-center justify-center w-1/3 rounded ${
-              'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+              fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
           >
             <p className="-rotate-90">Wide</p>
@@ -114,7 +116,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
           <button
             onClick={() => handleServeLocation('serve_wide_wide', false)}
             className={`absolute flex items-center justify-center rounded inset-2 top-1/2 ${
-              'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+              fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
             }`}
           >
             <p className="rotate-90">Wide</p>
@@ -124,7 +126,7 @@ export const AdSide: FC<IHandleServeLocationProps> = ({
       <button
         onClick={() => handleServeLocation('net', false)}
         className={`h-12 mt-2 rounded grid-in-net ${
-          'first' === 'first' ? 'bg-orange-400' : 'bg-red-500'
+          fault === 'first' ? 'bg-orange-400' : 'bg-red-500'
         }`}
         style={{ width: '42rem' }}
       >

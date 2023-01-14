@@ -84,8 +84,6 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   };
 
   const handleShotStroke = (stroke: string) => {
-    // TODO only show ace option if unreturned is true
-
     // update stroke stage
     setShotStroke(stroke);
 
@@ -161,9 +159,15 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
       {serveLocationStage ? (
         <>
           {match.side === 'deuce' ? (
-            <DeuceSide handleServeLocation={handleServeLocation} />
+            <DeuceSide
+              handleServeLocation={handleServeLocation}
+              fault={serveFault}
+            />
           ) : (
-            <AdSide handleServeLocation={handleServeLocation} />
+            <AdSide
+              handleServeLocation={handleServeLocation}
+              fault={serveFault}
+            />
           )}
         </>
       ) : (
@@ -173,7 +177,10 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
           ) : (
             <>
               {strokeStage ? (
-                <StrokeStage handleShotStroke={handleShotStroke} />
+                <StrokeStage
+                  handleShotStroke={handleShotStroke}
+                  shotReturned={shotReturned}
+                />
               ) : (
                 <>
                   {pointWonStage ? (

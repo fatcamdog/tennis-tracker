@@ -2,7 +2,10 @@ import { FC } from 'react';
 
 import { IHandleShotStrokeProps } from '../../../utils/interfaces';
 
-const StrokeStage: FC<IHandleShotStrokeProps> = ({ handleShotStroke }) => {
+const StrokeStage: FC<IHandleShotStrokeProps> = ({
+  handleShotStroke,
+  shotReturned,
+}) => {
   return (
     <div>
       <p>What did the returner hit?</p>
@@ -21,15 +24,21 @@ const StrokeStage: FC<IHandleShotStrokeProps> = ({ handleShotStroke }) => {
             Backhand
           </button>
         </div>
-        <p>Or</p>
-        <div>
-          <button
-            onClick={() => handleShotStroke('ace')}
-            className="btn btn-accent"
-          >
-            Aced
-          </button>
-        </div>
+        {!shotReturned ? (
+          <div>
+            <p>Or</p>
+            <div>
+              <button
+                onClick={() => handleShotStroke('ace')}
+                className="btn btn-accent"
+              >
+                Aced
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

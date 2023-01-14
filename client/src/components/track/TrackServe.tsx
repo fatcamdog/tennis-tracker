@@ -4,6 +4,7 @@ import axios from 'axios';
 import { IMatchUserProps } from '../../utils/interfaces';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { trackMatch } from '../../redux/matches';
+import matchLogic from '../../utils/matchLogic';
 
 import Timer from './Timer';
 import { DeuceSide, AdSide } from '../court/ServeCourt';
@@ -14,7 +15,8 @@ import PointWonStage from '../stages/starting/PointWonStage';
 const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   // shot data
   const [firstServeLocation, setFirstServeLocation] = useState<string>('');
-  const [secondServeLocation, setSecondServeLocation] = useState<string>('');
+  const [secondServeLocation, setSecondServeLocation] =
+    useState<string>('bypass');
   const [serveFault, setServeFault] = useState<string>('first');
   const [shotReturned, setShotReturned] = useState<boolean>(true);
   const [shotStroke, setShotStroke] = useState<string>('');
@@ -99,7 +101,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     );
   };
 
-  const handlePointFinish = (
+  const handlePointFinish = async (
     won: boolean,
     fault: string,
     firstServeLocation: string,
@@ -111,7 +113,35 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     dispatch(trackMatch({ pointWon: won, match, duration, side: match.side }));
 
     // update db
+    if (user) {
+      await axios.patch(
+        `http://localhost:4000/api/matches/${match.id}`,
+        matchLogic(
+          won,
+          match,
+          duration,
+          returned,
+          fault,
+          match.side!,
+          'net',
+          firstServeLocation,
+          secondServeLocation,
+          stroke,
+          'winner',
+          'user'
+        ),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+    }
+
     // reset for next point
+    setPointWonStage(false);
+    setServeLocationStage(true);
   };
 
   return (

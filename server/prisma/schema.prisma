@@ -97,6 +97,7 @@ enum Stroke {
     overhead
     double
     ace
+    bypass
 }
 
 enum TrackingMode {

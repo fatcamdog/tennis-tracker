@@ -2,6 +2,8 @@ import { FC, useState } from 'react';
 import axios from 'axios';
 
 import { IMatchUserProps } from '../../utils/interfaces';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { trackMatch } from '../../redux/matches';
 
 import Timer from './Timer';
 import { DeuceSide, AdSide } from '../court/ServeCourt';
@@ -26,6 +28,8 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
 
   // tracking length of match
   const [duration, setDuration] = useState<number>(0);
+
+  const dispatch = useAppDispatch();
 
   // handle when the user clicks a spot for their serve
   const handleServeLocation = (location: string, inPlay: boolean) => {
@@ -85,11 +89,29 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     setPointWon(won);
 
     // call finish point function
-    handlePointFinish();
+    handlePointFinish(
+      won,
+      serveFault,
+      firstServeLocation,
+      secondServeLocation,
+      shotReturned,
+      shotStroke
+    );
   };
 
-  const handlePointFinish = () => {
-    console.log('point over');
+  const handlePointFinish = (
+    won: boolean,
+    fault: string,
+    firstServeLocation: string,
+    secondServeLocation: string,
+    returned: boolean,
+    stroke: string
+  ) => {
+    // update local state
+    dispatch(trackMatch({ pointWon: won, match, duration, side: match.side }));
+
+    // update db
+    // reset for next point
   };
 
   return (
@@ -133,8 +155,3 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
 };
 
 export default TrackServe;
-
-// Court diagram - serve if serving - return if returning
-// Returned stage
-// Forehand, backhand, or ace
-// Won or lost

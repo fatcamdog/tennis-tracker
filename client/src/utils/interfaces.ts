@@ -135,3 +135,7 @@ export interface IMatchDurationProps {
 export interface IHandleServeLocationProps {
   handleServeLocation: (arg0: string, arg1: boolean) => void;
 }
+
+export interface IHandleServeReturnedProps {
+  handleShotReturned: (arg0: boolean) => void;
+}

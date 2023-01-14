@@ -3,18 +3,20 @@ import axios from 'axios';
 
 import { IMatchUserProps } from '../../utils/interfaces';
 
-import { DeuceSide, AdSide } from '../court/ServeCourt';
 import Timer from './Timer';
+import { DeuceSide, AdSide } from '../court/ServeCourt';
+import ReturnedStage from '../stages/starting/ReturnedStage';
 
 const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   // shot data
   const [firstServeLocation, setFirstServeLocation] = useState<string>('');
   const [secondServeLocation, setSecondServeLocation] = useState<string>('');
   const [serveFault, setServeFault] = useState<string>('first');
-  const [returned, setReturned] = useState<boolean>(true);
+  const [shotReturned, setShotReturned] = useState<boolean>(true);
 
   // form stages
   const [serveLocationStage, setServeLocationStage] = useState<boolean>(true);
+  const [returnedStage, setReturnedStage] = useState<boolean>(false);
 
   // tracking length of match
   const [duration, setDuration] = useState<number>(0);
@@ -52,8 +54,14 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
 
       // hide location stage and show unreturned stage
       setServeLocationStage(false);
+      setReturnedStage(true);
     }
   };
+
+  const handleShotReturned = (returned: boolean) => {
+    console.log(returned);
+  };
+
   return (
     <div>
       <Timer match={match} duration={duration} setDuration={setDuration} />
@@ -66,7 +74,13 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
           )}
         </>
       ) : (
-        <div>Next stage</div>
+        <>
+          {returnedStage ? (
+            <ReturnedStage handleShotReturned={handleShotReturned} />
+          ) : (
+            <div>Next stage</div>
+          )}
+        </>
       )}
     </div>
   );

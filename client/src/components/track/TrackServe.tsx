@@ -23,6 +23,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   const [returnLocation, setReturnLocation] = useState<string>('');
   const [shotStroke, setShotStroke] = useState<string>('');
   const [pointWon, setPointWon] = useState<boolean>(false);
+  const [inPlay, setInPlay] = useState<boolean>(true);
 
   // form stages
   const [serveLocationStage, setServeLocationStage] = useState<boolean>(true);
@@ -61,6 +62,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
           firstServeLocation,
           location,
           false,
+          'bypass',
           'double'
         );
       }
@@ -93,11 +95,17 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
   };
 
   const handleReturnLocation = (location: string, inPlay: boolean) => {
-    console.log(location, inPlay);
+    // update return locaton stat and in play state
+    setReturnLocation(location);
+    setInPlay(inPlay);
+
+    // hide return location stage and show stroke location stage
+    setReturnLocationStage(false);
+    setStrokeStage(true);
   };
 
   const handleShotStroke = (stroke: string) => {
-    // skip point won stage if serve was unreturned
+    // skip point won stage if serve was unreturned or if return went out
     if (!shotReturned) {
       handlePointFinish(
         match.serving,
@@ -105,6 +113,19 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
         firstServeLocation,
         secondServeLocation,
         shotReturned,
+        'bypass',
+        stroke
+      );
+    }
+
+    if (!inPlay) {
+      handlePointFinish(
+        match.serving,
+        serveFault,
+        firstServeLocation,
+        secondServeLocation,
+        shotReturned,
+        returnLocation,
         stroke
       );
     }
@@ -128,6 +149,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
       firstServeLocation,
       secondServeLocation,
       shotReturned,
+      returnLocation,
       shotStroke
     );
   };

@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../hooks/reduxHooks';
 import { trackMatch } from '../../redux/matches';
 import matchLogic from '../../utils/matchLogic';
 
-import RallyCourt from '../court/RallyCourt';
+import { RallyCourt } from '../court/RallyCourt';
 import HitterStage from '../stages/rallying/HitterStage';
 import MethodStage from '../stages/rallying/MethodStage';
 import SideStage from '../stages/rallying/SideStage';

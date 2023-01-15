@@ -8,6 +8,7 @@ import matchLogic from '../../utils/matchLogic';
 
 import Timer from './Timer';
 import { DeuceSide, AdSide } from '../court/ServeCourt';
+import { ReturnCourt } from '../court/RallyCourt';
 import ReturnedStage from '../stages/starting/ReturnedStage';
 import StrokeStage from '../stages/starting/StrokeStage';
 import PointWonStage from '../stages/starting/PointWonStage';
@@ -19,12 +20,15 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     useState<string>('bypass');
   const [serveFault, setServeFault] = useState<string>('first');
   const [shotReturned, setShotReturned] = useState<boolean>(true);
+  const [returnLocation, setReturnLocation] = useState<string>('');
   const [shotStroke, setShotStroke] = useState<string>('');
   const [pointWon, setPointWon] = useState<boolean>(false);
 
   // form stages
   const [serveLocationStage, setServeLocationStage] = useState<boolean>(true);
   const [returnedStage, setReturnedStage] = useState<boolean>(false);
+  const [returnLocationStage, setReturnLocationStage] =
+    useState<boolean>(false);
   const [strokeStage, setStrokeStage] = useState<boolean>(false);
   const [pointWonStage, setPointWonStage] = useState<boolean>(false);
 
@@ -78,9 +82,18 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     // update returned state
     setShotReturned(returned);
 
-    // hide returned stage and show stroke stage
+    // hide returned stage and show stroke stage or return location stage
     setReturnedStage(false);
-    setStrokeStage(true);
+
+    if (returned) {
+      setReturnLocationStage(true);
+    } else {
+      setStrokeStage(true);
+    }
+  };
+
+  const handleReturnLocation = (location: string, inPlay: boolean) => {
+    console.log(location, inPlay);
   };
 
   const handleShotStroke = (stroke: string) => {
@@ -126,6 +139,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
     firstServeLocation: string,
     secondServeLocation: string,
     returned: boolean,
+    returnLocation: string,
     stroke: string
   ) => {
     // update local state
@@ -142,7 +156,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
           returned,
           fault,
           match.side!,
-          'net',
+          returnLocation,
           firstServeLocation,
           secondServeLocation,
           stroke,
@@ -188,21 +202,27 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
             <ReturnedStage handleShotReturned={handleShotReturned} />
           ) : (
             <>
-              {strokeStage ? (
-                <StrokeStage
-                  handleShotStroke={handleShotStroke}
-                  shotReturned={shotReturned}
-                />
+              {returnLocationStage ? (
+                <ReturnCourt handleShotLocation={handleReturnLocation} />
               ) : (
                 <>
-                  {pointWonStage ? (
-                    <PointWonStage
-                      handlePointWon={handlePointWon}
-                      match={match}
-                      user={user!}
+                  {strokeStage ? (
+                    <StrokeStage
+                      handleShotStroke={handleShotStroke}
+                      shotReturned={shotReturned}
                     />
                   ) : (
-                    <div>Something went wrong</div>
+                    <>
+                      {pointWonStage ? (
+                        <PointWonStage
+                          handlePointWon={handlePointWon}
+                          match={match}
+                          user={user!}
+                        />
+                      ) : (
+                        <div>Something went wrong</div>
+                      )}
+                    </>
                   )}
                 </>
               )}

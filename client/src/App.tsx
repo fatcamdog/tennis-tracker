@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, Outlet, Link } from 'react-router-dom';
 
+import Home from './components/Home';
+import Docs from './components/Docs';
 import Navbar from './components/Navbar/Navbar';
 import Matches from './components/matches/Matches';
 import Match from './components/matches/Match';
@@ -30,11 +32,6 @@ export default function App() {
   const dispatch = useAppDispatch();
   const { logoutUser } = useLogout();
 
-  // logout user
-  const handleLogout = () => {
-    logoutUser();
-  };
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user')!);
 
@@ -47,9 +44,11 @@ export default function App() {
       <Navbar user={user!} />
       <div>
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/docs" element={<Docs />} />
           {rendered ? (
             <Route element={<ProtectedRoute user={user} />}>
-              <Route path="/" element={<Matches />} />
+              <Route path="/matches" element={<Matches />} />
               <Route path="/matches/:id" element={<Match />} />
               <Route path="/matches/edit/:id" element={<EditMatch />} />
               <Route path="/matches/create" element={<CreateMatch />} />
@@ -61,11 +60,15 @@ export default function App() {
           )}
           <Route
             path="/signup"
-            element={!user ? <Signup /> : <Navigate to="/" replace={true} />}
+            element={
+              !user ? <Signup /> : <Navigate to="/matches" replace={true} />
+            }
           />
           <Route
             path="/login"
-            element={!user ? <Login /> : <Navigate to="/" replace={true} />}
+            element={
+              !user ? <Login /> : <Navigate to="/matches" replace={true} />
+            }
           />
           <Route path="*" element={<p>404 page</p>} />
         </Routes>

@@ -8,6 +8,15 @@ import calculateMinsAndHours from '../../utils/minsAndHours';
 const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
   return (
     <div className="relative flex flex-col px-16 py-5 bg-neutral rounded-xl">
+      <div className="mb-3 flex gap-5 justify-around">
+        <Link
+          className="tooltip tooltip-accent tooltip-right"
+          data-tip="Track"
+          to={`/matches/track/${match.id}`}
+        ></Link>
+        <Link to={`/matches/edit/${match.id}`}>Edit</Link>
+        <Link to={`/matches/edit/${match.id}`}>Delete</Link>
+      </div>
       <div>
         <div className="grid grid-cols-2">
           <p className={`${match.serving ? 'flex items-center gap-x-3' : ''}`}>
@@ -97,40 +106,6 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
               match.trackingMode.slice(1)}
           </p>
         </div>
-      </div>
-
-      <div className="absolute dropdown dropdown-left top-2 right-2">
-        <label tabIndex={0} className="border-none btn btn-sm hover:bg-accent">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#000000"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="1"></circle>
-            <circle cx="19" cy="12" r="1"></circle>
-            <circle cx="5" cy="12" r="1"></circle>
-          </svg>
-        </label>
-        <ul
-          tabIndex={0}
-          className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <Link to={`/matches/track/${match.id}`}>Track</Link>
-          </li>
-          <li>
-            <Link to={`/matches/edit/${match.id}`}>Edit</Link>
-          </li>
-          <li>
-            <Link to={`/matches/edit/${match.id}`}>Delete</Link>
-          </li>
-        </ul>
       </div>
     </div>
   );

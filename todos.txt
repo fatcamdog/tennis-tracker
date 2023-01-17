@@ -1,0 +1,9 @@
+---- At /matches ----
+- 2 different match sections
+    1. Ongoing matches
+    2. Finished matches
+    - Make it clear how to edit, track, and view analytics for these
+    - They will be collapsed and slightly going down
+    When user clicks view all there will be a nice animation to slide them all out
+
+    - Make my own svg after to indicate who is serving

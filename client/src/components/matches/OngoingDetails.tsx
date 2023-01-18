@@ -7,18 +7,20 @@ import calculateMinsAndHours from '../../utils/minsAndHours';
 // render detailed data for ongoing matches
 const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
   return (
-    <div className="relative flex flex-col px-16 py-5 bg-neutral rounded-xl">
-      <div className="mb-3 flex gap-5 justify-around">
-        <Link
-          className="tooltip tooltip-accent tooltip-right"
-          data-tip="Track"
-          to={`/matches/track/${match.id}`}
-        ></Link>
-        <Link to={`/matches/edit/${match.id}`}>Edit</Link>
-        <Link to={`/matches/edit/${match.id}`}>Delete</Link>
+    <div className="">
+      <div className="">
+        <Link className="" data-tip="Track" to={`/matches/track/${match.id}`}>
+          Track
+        </Link>
+        <Link className="" data-tip="Edit" to={`/matches/edit/${match.id}`}>
+          Edit
+        </Link>
+        <Link className="" data-tip="Delete" to={`/matches/edit/${match.id}`}>
+          Delete
+        </Link>
       </div>
       <div>
-        <div className="grid grid-cols-2">
+        <div className="">
           <p className={`${match.serving ? 'flex items-center gap-x-3' : ''}`}>
             {user.name}
             {match.serving ? (
@@ -39,8 +41,8 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
               <></>
             )}
           </p>
-          <div className="flex gap-2 justify-self-center tabular-nums">
-            <b className="mr-3">
+          <div className="tabular-nums">
+            <b className="">
               {parseInt(match.userDisplayPoints) !== 0
                 ? match.userDisplayPoints
                 : '00'}
@@ -50,7 +52,7 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="">
           <p className={`${!match.serving ? 'flex items-center gap-x-3' : ''}`}>
             {match.opponent}
             {!match.serving ? (
@@ -71,8 +73,8 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
               <></>
             )}
           </p>
-          <div className="flex gap-2 justify-self-center tabular-nums">
-            <b className="mr-3">
+          <div className="tabular-nums">
+            <b className="">
               {parseInt(match.oppDisplayPoints) !== 0
                 ? match.oppDisplayPoints
                 : '00'}
@@ -83,10 +85,9 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
           </div>
         </div>
       </div>
-      <div className="divider"></div>
-      <div className="flex gap-5">
+      <div className="">
         <div>
-          <p className="text-sm text-gray-400">Date</p>
+          <p className="">Date</p>
           <p>
             {new Date(match.createdAt).toLocaleDateString('en-us', {
               year: 'numeric',
@@ -96,11 +97,11 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
           </p>
         </div>
         <div>
-          <p className="text-sm text-gray-400">Duration</p>
+          <p className="">Duration</p>
           <p>{calculateMinsAndHours(match.duration)}</p>
         </div>
         <div>
-          <p className="text-sm text-gray-400">Tracking Mode</p>
+          <p className="">Tracking Mode</p>
           <p>
             {match.trackingMode.charAt(0).toUpperCase() +
               match.trackingMode.slice(1)}

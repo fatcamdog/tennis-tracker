@@ -35,7 +35,16 @@ export default function Matches() {
                 {ongoingMatches.length !== 0 ? (
                   <div>
                     <h2>Ongoing Matches</h2>
-                    <div className="w-full max-w-lg gap-10 carousel">
+                    <div>
+                      {ongoingMatches.map((match) => (
+                        <OngoingDetails
+                          match={match}
+                          user={user!}
+                          key={match.id}
+                        />
+                      ))}
+                    </div>
+                    {/* <div className="w-full max-w-lg gap-10 carousel">
                       {ongoingMatches.map((match, index) => (
                         <div
                           className="relative carousel-item"
@@ -59,7 +68,7 @@ export default function Matches() {
                           </div>
                         </div>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 ) : (
                   <></>

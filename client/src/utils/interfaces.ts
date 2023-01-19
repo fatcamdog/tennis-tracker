@@ -36,7 +36,7 @@ export interface IMatch {
   secondServeLocation?: string;
 }
 
-interface IPointDetails {
+export interface IPointDetails {
   won?: boolean;
   method?: string;
   hitter?: string;

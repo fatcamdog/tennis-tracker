@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IMatchUserProps } from '../../utils/interfaces';
+import { IMatchUserProps, IPointDetails } from '../../utils/interfaces';
 
 const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
   // calculate what percent of first serves the user makes
@@ -97,52 +97,55 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
   };
 
   // find amount of breakpoints saved
-  // const breakPointsSaved = (user: boolean): string => {
-  //   let totalBreakPoints: number = 0;
-  //   let breakPointsSaved: number = 0;
+  const breakPointsSaved = (user: boolean): string => {
+    let totalBreakPoints: number = 0;
+    let breakPointsSaved: number = 0;
 
-  //   match.pointDetails.map((point, index) => {
-  //     if (point.serving === true && user === true) {
-  //       if (
-  //         (point.oppDisplayPoints === '40' &&
-  //           match.pointDetails[index - 1].oppDisplayPoints !== '30' &&
-  //           point.userDisplayPoints !== '40' &&
-  //           point.userDisplayPoints !== 'AD') ||
-  //         (point.oppDisplayPoints === '40' &&
-  //           match.pointDetails[index - 1].oppDisplayPoints === 'AD')
-  //       ) {
-  //         if (point.won === user) breakPointsSaved++;
-  //         totalBreakPoints++;
-  //       } else if (
-  //         point.oppDisplayPoints === '0' &&
-  //         (match.pointDetails[index - 1].oppDisplayPoints === '40' ||
-  //           match.pointDetails[index - 1].oppDisplayPoints === 'AD')
-  //       ) {
-  //         totalBreakPoints++;
-  //       }
-  //     } else if (point.serving === false && user === false) {
-  //       if (
-  //         (point.userDisplayPoints === '40' &&
-  //           match.pointDetails[index - 1].userDisplayPoints !== '30' &&
-  //           point.oppDisplayPoints !== '40' &&
-  //           point.oppDisplayPoints !== 'AD') ||
-  //         (point.userDisplayPoints === '40' &&
-  //           match.pointDetails[index - 1].userDisplayPoints === 'AD')
-  //       ) {
-  //         if (point.won === user) breakPointsSaved++;
-  //         totalBreakPoints++;
-  //       } else if (
-  //         point.userDisplayPoints === '0' &&
-  //         (match.pointDetails[index - 1].userDisplayPoints === '40' ||
-  //           match.pointDetails[index - 1].userDisplayPoints === 'AD')
-  //       ) {
-  //         totalBreakPoints++;
-  //       }
-  //     }
-  //   });
+    let pushedArray: IPointDetails[] = [...match.pointDetails];
+    pushedArray.unshift(match.pointDetails[0]);
 
-  //   return `${breakPointsSaved}/${totalBreakPoints}`;
-  // };
+    match.pointDetails.map((point: IPointDetails, index: number) => {
+      if (point.serving && user) {
+        if (
+          (point.oppDisplayPoints === '40' &&
+            pushedArray[index].oppDisplayPoints === '40' &&
+            pushedArray[index].userDisplayPoints !== '40' &&
+            pushedArray[index].userDisplayPoints !== 'AD') ||
+          pushedArray[index].oppDisplayPoints === 'AD'
+        ) {
+          if (point.won) breakPointsSaved++;
+          totalBreakPoints++;
+        } else if (
+          point.userDisplayPoints === '0' &&
+          point.oppDisplayPoints === '0' &&
+          (pushedArray[index].oppDisplayPoints === '40' ||
+            pushedArray[index].oppDisplayPoints === 'AD')
+        ) {
+          totalBreakPoints++;
+        }
+      } else if (!point.serving && !user) {
+        if (
+          (point.userDisplayPoints === '40' &&
+            pushedArray[index].userDisplayPoints === '40' &&
+            pushedArray[index].oppDisplayPoints !== '40' &&
+            pushedArray[index].oppDisplayPoints !== 'AD') ||
+          pushedArray[index].userDisplayPoints === 'AD'
+        ) {
+          if (!point.won) breakPointsSaved++;
+          totalBreakPoints++;
+        } else if (
+          point.oppDisplayPoints === '0' &&
+          point.userDisplayPoints === '0' &&
+          (pushedArray[index].userDisplayPoints === '40' ||
+            pushedArray[index].userDisplayPoints === 'AD')
+        ) {
+          totalBreakPoints++;
+        }
+      }
+    });
+
+    return `${breakPointsSaved}/${totalBreakPoints}`;
+  };
 
   // find percentage of forehand returns and backhand returns
   const percentageForehandAndBackhandReturns = (
@@ -192,7 +195,7 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
           <p>Second serve win percentage: {secondServeWinPercentage(true)}</p>
           <p>Double faults: {doubleFaultCount(true)}</p>
           <p>Aces: {aceCount(true)}</p>
-          {/* <p>Break points saved: {breakPointsSaved(true)}</p> */}
+          <p>Break points saved: {breakPointsSaved(true)}</p>
           <p>
             Percentage serves to forehand:{' '}
             {percentageForehandAndBackhandReturns(true, 'forehand')}
@@ -221,7 +224,7 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
           <p>Second serve win percentage: {secondServeWinPercentage(false)}</p>
           <p>Double faults: {doubleFaultCount(false)}</p>
           <p>Aces: {aceCount(false)}</p>
-          {/* <p>Break points saved: {breakPointsSaved(false)}</p> */}
+          <p>Break points saved: {breakPointsSaved(false)}</p>
           <p>
             Percentage serves to forehand:{' '}
             {percentageForehandAndBackhandReturns(false, 'forehand')}

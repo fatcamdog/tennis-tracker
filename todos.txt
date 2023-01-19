@@ -11,3 +11,8 @@
 ---- At /matches/track/id -----
 When user clicks unreturned show court with inside shots blurred out
 When user clicks returned show court with outside shots blurred out
+
+----- At /matches/analytics/id -----
+At diagram stats for serve
+    - Show courts with serve location and return location percentages
+    - Show percetages of points won in those locations

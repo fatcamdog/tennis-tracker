@@ -2,7 +2,9 @@ import { useParams } from 'react-router-dom';
 
 import { useFetchOne } from '../../hooks/fetchers';
 import { useAppSelector } from '../../hooks/reduxHooks';
+
 import ServingStats from './ServingStats';
+import BasicAnalytics from './BasicAnalytics';
 
 export default function Analytics() {
   const { id } = useParams();
@@ -26,6 +28,8 @@ export default function Analytics() {
             <div>
               <div>
                 <h2>Serving stats</h2>
+                <br />
+                <BasicAnalytics match={match} user={user!} />
                 <br />
                 <ServingStats match={match} user={user!} />
               </div>

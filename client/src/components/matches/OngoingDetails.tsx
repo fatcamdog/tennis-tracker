@@ -18,6 +18,13 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
         <Link className="" data-tip="Delete" to={`/matches/edit/${match.id}`}>
           Delete
         </Link>
+        <Link
+          className=""
+          data-tip="Delete"
+          to={`/matches/analytics/${match.id}`}
+        >
+          Analytics
+        </Link>
       </div>
       <div>
         <div className="">

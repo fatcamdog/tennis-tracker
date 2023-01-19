@@ -7,3 +7,7 @@
     When user clicks view all there will be a nice animation to slide them all out
 
     - Make my own svg after to indicate who is serving
+
+---- At /matches/track/id -----
+When user clicks unreturned show court with inside shots blurred out
+When user clicks returned show court with outside shots blurred out

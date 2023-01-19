@@ -24,21 +24,6 @@ const StrokeStage: FC<IHandleShotStrokeProps> = ({
             Backhand
           </button>
         </div>
-        {!shotReturned ? (
-          <div>
-            <p>Or</p>
-            <div>
-              <button
-                onClick={() => handleShotStroke('ace')}
-                className="btn btn-accent"
-              >
-                Aced
-              </button>
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
       </div>
     </div>
   );

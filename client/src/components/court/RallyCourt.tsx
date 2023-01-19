@@ -105,7 +105,7 @@ export const RallyCourt: FC<IHandleShotLocationProps> = ({
   );
 };
 
-export const ReturnCourt: FC<IHandleShotLocationProps> = ({
+export const ReturnedCourt: FC<IHandleShotLocationProps> = ({
   handleShotLocation,
 }) => {
   return (
@@ -115,22 +115,8 @@ export const ReturnCourt: FC<IHandleShotLocationProps> = ({
       </div>
       {/* tennis court diagram */}
       <div>
-        <button
-          className="h-12 mb-2 bg-red-500 rounded"
-          style={{ width: '42rem' }}
-          onClick={() => handleShotLocation('long', false)}
-        >
-          <p>Long</p>
-        </button>
         <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
-          <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley">
-            <button
-              className="absolute flex items-center justify-center bg-red-500 rounded inset-2"
-              onClick={() => handleShotLocation('wide_deuce', false)}
-            >
-              <p className="-rotate-90">Wide on deuce side</p>
-            </button>
-          </div>
+          <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley"></div>
           <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind">
             <button
               className="w-2/3 h-full bg-green-500 rounded"
@@ -171,6 +157,52 @@ export const ReturnCourt: FC<IHandleShotLocationProps> = ({
               onClick={() => handleShotLocation('short_ad', true)}
             ></button>
           </div>
+          <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-right-alley"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const UnreturnedCourt: FC<IHandleShotLocationProps> = ({
+  handleShotLocation,
+}) => {
+  return (
+    <div>
+      <div>
+        <p>Click where the return went</p>
+        <div>
+          <p>Or</p>
+          <button
+            onClick={() => handleShotLocation('ace', false)}
+            className="btn btn-accent"
+          >
+            Aced
+          </button>
+        </div>
+      </div>
+      {/* tennis court diagram */}
+      <div>
+        <button
+          className="h-12 mb-2 bg-red-500 rounded"
+          style={{ width: '42rem' }}
+          onClick={() => handleShotLocation('long', false)}
+        >
+          <p>Long</p>
+        </button>
+        <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
+          <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley">
+            <button
+              className="absolute flex items-center justify-center bg-red-500 rounded inset-2"
+              onClick={() => handleShotLocation('wide_deuce', false)}
+            >
+              <p className="-rotate-90">Wide on deuce side</p>
+            </button>
+          </div>
+          <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind"></div>
+          <div className="flex justify-end gap-2 p-2 pl-0 bg-blue-400 grid-in-right-behind"></div>
+          <div className="flex gap-2 p-2 pr-0 bg-blue-400 outline outline-2 outline-white grid-in-deuce"></div>
+          <div className="flex justify-end gap-2 p-2 pl-0 bg-blue-400 outline outline-2 outline-white grid-in-ad"></div>
           <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-right-alley">
             <button
               className="absolute flex items-center justify-center bg-red-500 rounded inset-2"

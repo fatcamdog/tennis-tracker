@@ -8,7 +8,7 @@ import matchLogic from '../../utils/matchLogic';
 
 import Timer from './Timer';
 import { DeuceSide, AdSide } from '../court/ServeCourt';
-import { ReturnCourt } from '../court/RallyCourt';
+import { ReturnedCourt, UnreturnedCourt } from '../court/RallyCourt';
 import ReturnedStage from '../stages/starting/ReturnedStage';
 import StrokeStage from '../stages/starting/StrokeStage';
 import PointWonStage from '../stages/starting/PointWonStage';
@@ -86,18 +86,25 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
 
     // hide returned stage and show stroke stage or return location stage
     setReturnedStage(false);
-
-    if (returned) {
-      setReturnLocationStage(true);
-    } else {
-      setStrokeStage(true);
-    }
+    setReturnLocationStage(true);
   };
 
   const handleReturnLocation = (location: string, inPlay: boolean) => {
     // update return locaton stat and in play state
     setReturnLocation(location);
     setInPlay(inPlay);
+
+    if (location === 'ace') {
+      return handlePointFinish(
+        match.serving,
+        serveFault,
+        firstServeLocation,
+        secondServeLocation,
+        false,
+        'ace',
+        'ace'
+      );
+    }
 
     // hide return location stage and show stroke location stage
     setReturnLocationStage(false);
@@ -113,7 +120,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
         firstServeLocation,
         secondServeLocation,
         shotReturned,
-        'bypass',
+        returnLocation,
         stroke
       );
     }
@@ -224,25 +231,33 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
             <ReturnedStage handleShotReturned={handleShotReturned} />
           ) : (
             <>
-              {returnLocationStage ? (
-                <ReturnCourt handleShotLocation={handleReturnLocation} />
+              {returnLocationStage && shotReturned ? (
+                <ReturnedCourt handleShotLocation={handleReturnLocation} />
               ) : (
                 <>
-                  {strokeStage ? (
-                    <StrokeStage
-                      handleShotStroke={handleShotStroke}
-                      shotReturned={shotReturned}
+                  {returnLocationStage && !shotReturned ? (
+                    <UnreturnedCourt
+                      handleShotLocation={handleReturnLocation}
                     />
                   ) : (
                     <>
-                      {pointWonStage ? (
-                        <PointWonStage
-                          handlePointWon={handlePointWon}
-                          match={match}
-                          user={user!}
+                      {strokeStage ? (
+                        <StrokeStage
+                          handleShotStroke={handleShotStroke}
+                          shotReturned={shotReturned}
                         />
                       ) : (
-                        <div>Something went wrong</div>
+                        <>
+                          {pointWonStage ? (
+                            <PointWonStage
+                              handlePointWon={handlePointWon}
+                              match={match}
+                              user={user!}
+                            />
+                          ) : (
+                            <div>Something went wrong</div>
+                          )}
+                        </>
                       )}
                     </>
                   )}

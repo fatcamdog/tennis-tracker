@@ -14,14 +14,38 @@ const BasicAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
     return pointsWon;
   };
 
+  // calculate games won for user and opponent
+  const gamesWon = (user: boolean): number => {
+    let gamesWon = 0;
+
+    if (user) {
+      match.userGames.map((set) => {
+        gamesWon += set;
+      });
+    } else {
+      match.oppGames.map((set) => {
+        gamesWon += set;
+      });
+    }
+
+    return gamesWon;
+  };
+
+  // calculate sets won for user and opponent
+  const setsWon = (user: boolean): number => {
+    let setsWon = 0;
+
+    return setsWon;
+  };
+
   return (
     <div>
       <div>
         <p>{user.name}:</p>
         <div>
           <p>Points won: {pointsWon(true)}</p>
-          <p>Games won:</p>
-          <p>Sets won:</p>
+          <p>Games won: {gamesWon(true)}</p>
+          <p>Sets won: {setsWon(true)}</p>
         </div>
       </div>
       <br />
@@ -29,8 +53,8 @@ const BasicAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
         <p>{match.opponent}:</p>
         <div>
           <p>Points won: {pointsWon(false)}</p>
-          <p>Games won:</p>
-          <p>Sets won:</p>
+          <p>Games won: {gamesWon(false)}</p>
+          <p>Sets won: {setsWon(false)}</p>
         </div>
       </div>
     </div>

@@ -28,13 +28,13 @@ export default function Analytics() {
           ) : (
             <div>
               <div>
-                <h2>Serving stats</h2>
-                <br />
+                {/* <h2>Serving stats</h2> */}
+                {/* <br />
                 <BasicAnalytics match={match} user={user!} />
                 <br />
                 <ServingStats match={match} user={user!} />
-                <br />
-                <ServeDiagramAnalytics />
+                <br /> */}
+                <ServeDiagramAnalytics match={match} user={user!} />
               </div>
             </div>
           )}

@@ -33,9 +33,11 @@ const BasicAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
 
   // calculate sets won for user and opponent
   const setsWon = (user: boolean): number => {
-    let setsWon = 0;
-
-    return setsWon;
+    if (user) {
+      return match.userSets;
+    } else {
+      return match.oppSets;
+    }
   };
 
   return (

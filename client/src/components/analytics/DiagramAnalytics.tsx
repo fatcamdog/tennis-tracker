@@ -2,12 +2,13 @@ import { FC } from 'react';
 
 import { IMatchUserProps } from '../../utils/interfaces';
 
+import { DeuceStats, AdStats, ReturnStats } from '../court/CourtStats';
+
 export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
   return (
     <div>
       <div>
         <p>{user.name}</p>
-        <div></div>
       </div>
       <br />
       <div>

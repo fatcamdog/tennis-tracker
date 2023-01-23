@@ -16,3 +16,5 @@ When user clicks returned show court with outside shots blurred out
 At diagram stats for serve
     - Show courts with serve location and return location percentages
     - Show percetages of points won in those locations
+
+Flash errors backend

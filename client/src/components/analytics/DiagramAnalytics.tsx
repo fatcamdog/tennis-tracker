@@ -18,7 +18,11 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
       <br />
       <div>
         <p>{match.opponent}</p>
-        <div></div>
+        <div>
+          <DeuceStats />
+          <AdStats />
+          <ReturnStats />
+        </div>
       </div>
     </div>
   );

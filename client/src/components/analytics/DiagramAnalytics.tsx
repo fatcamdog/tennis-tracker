@@ -10,18 +10,36 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
       <div>
         <p>{user.name}</p>
         <div>
-          <DeuceStats match={match} user={true} />
-          <AdStats match={match} user={true} />
-          <ReturnStats match={match} user={true} />
+          <div>
+            <p>Deuce Side Stats</p>
+            <DeuceStats match={match} user={true} />
+          </div>
+          <div>
+            <p>Ad Side Stats</p>
+            <AdStats match={match} user={true} />
+          </div>
+          <div>
+            <p>Return Stats</p>
+            <ReturnStats match={match} user={true} />
+          </div>
         </div>
       </div>
       <br />
       <div>
         <p>{match.opponent}</p>
         <div>
-          <DeuceStats match={match} user={false} />
-          <AdStats match={match} user={false} />
-          <ReturnStats match={match} user={false} />
+          <div>
+            <p>Deuce Side Stats</p>
+            <DeuceStats match={match} user={false} />
+          </div>
+          <div>
+            <p>Ad Side Stats</p>
+            <AdStats match={match} user={false} />
+          </div>
+          <div>
+            <p>Return Stats</p>
+            <ReturnStats match={match} user={false} />
+          </div>
         </div>
       </div>
     </div>

@@ -151,3 +151,9 @@ export interface IHandleStartingPointWonProps {
   match: IMatch;
   user: IUser;
 }
+
+// // Interface for court diagram statistics
+export interface IMatchUserStatsProps {
+  match: IMatch;
+  user: boolean;
+}

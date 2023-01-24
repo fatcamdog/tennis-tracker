@@ -91,6 +91,45 @@ export const DeuceStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
 };
 
 export const AdStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
+  // Calculates serve percentage to each location and win percentage
+  const shotAndWinPercentage = (location: string, user: boolean): string => {
+    let locationTotal: number = 0;
+    let servesHit: number = 0;
+    let pointsWon: number = 0;
+    let pointsPlayed: number = 0;
+
+    match.pointDetails.map((point) => {
+      if (point.serving === user) {
+        if (point.side === 'ad') {
+          // updating serves hit to location
+          if (point.firstServeLocation === location) locationTotal++;
+          if (point.secondServeLocation === location) locationTotal++;
+
+          // updating total serves hit
+          if (point.secondServeLocation !== 'bypass') servesHit += 2;
+          else servesHit++;
+
+          // checking if point was won
+          if (
+            point.firstServeLocation === location &&
+            point.fault === 'first'
+          ) {
+            if (point.won === user) pointsWon++;
+            pointsPlayed++;
+          }
+          if (point.secondServeLocation === location) {
+            if (point.won === user) pointsWon++;
+            pointsPlayed++;
+          }
+        }
+      }
+    });
+
+    return `${Math.round((locationTotal / servesHit) * 100)}% hit ${Math.round(
+      (pointsWon / pointsPlayed) * 100
+    )}% won`;
+  };
+
   return (
     <div>
       <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
@@ -98,22 +137,32 @@ export const AdStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
         <div className="flex items-end p-2 bg-blue-400 grid-in-left-behind"></div>
         <div className="flex items-end p-2 bg-blue-400 grid-in-right-behind">
           <button className="flex items-center justify-center h-12 rounded grow bg-red-500">
-            <p>Long</p>
+            <p>{shotAndWinPercentage('long', user)}</p>
           </button>
         </div>
         <div className="flex justify-end p-2 bg-blue-400 outline outline-2 outline-white grid-in-deuce">
           <button className="flex items-center justify-center w-1/3 rounded bg-red-500">
-            <p className="-rotate-90">Wide</p>
+            <p className="-rotate-90">
+              {shotAndWinPercentage('serve_wide_tee', user)}
+            </p>
           </button>
         </div>
         <div className="flex gap-2 p-2 bg-blue-400 outline outline-2 outline-white grid-in-ad">
-          <button className="bg-green-500 rounded grow"></button>
-          <button className="bg-green-500 rounded grow"></button>
-          <button className="bg-green-500 rounded grow"></button>
+          <button className="bg-green-500 rounded grow">
+            {shotAndWinPercentage('serve_tee_ad', user)}
+          </button>
+          <button className="bg-green-500 rounded grow">
+            {shotAndWinPercentage('serve_middle_ad', user)}
+          </button>
+          <button className="bg-green-500 rounded grow">
+            {shotAndWinPercentage('serve_wide_ad', user)}
+          </button>
         </div>
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-right-alley">
           <button className="absolute flex items-center justify-center rounded inset-2 top-1/2 bg-red-500">
-            <p className="rotate-90">Wide</p>
+            <p className="rotate-90">
+              {shotAndWinPercentage('serve_wide_wide', user)}
+            </p>
           </button>
         </div>
       </div>
@@ -121,7 +170,7 @@ export const AdStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
         className="h-12 mt-2 rounded grid-in-net bg-red-500"
         style={{ width: '42rem' }}
       >
-        <p>Net</p>
+        <p>{shotAndWinPercentage('net', user)}</p>
       </button>
     </div>
   );

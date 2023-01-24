@@ -28,9 +28,7 @@ export default function Analytics() {
           ) : (
             <div>
               <div>
-                {/* <h2>Serving stats</h2> */}
-                {/* <br />
-                <BasicAnalytics match={match} user={user!} />
+                {/* <BasicAnalytics match={match} user={user!} />
                 <br />
                 <ServingStats match={match} user={user!} />
                 <br /> */}

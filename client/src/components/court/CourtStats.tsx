@@ -3,12 +3,26 @@ import { FC } from 'react';
 import { IMatchUserStatsProps } from '../../utils/interfaces';
 
 export const DeuceStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
+  // Calculates serve percentage to each location and win percentage
+  const shotAndWinPercentage = (location: string, user: boolean): string => {
+    let locationTotal: number = 0;
+    let servesHit: number = 0;
+
+    // match.pointDetails.map();
+
+    return `Pls work`;
+  };
+
+  // TODO show difference in locations between first serve and second serve
+
   return (
     <div>
       <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley">
           <button className="absolute flex items-center justify-center rounded inset-2 top-1/2 bg-red-500">
-            <p className="-rotate-90">Wide</p>
+            <p className="-rotate-90">
+              {shotAndWinPercentage('serve_wide_wide', true)}
+            </p>
           </button>
         </div>
         <div className="flex items-end p-2 bg-blue-400 grid-in-left-behind outline outline-2 outline-white">

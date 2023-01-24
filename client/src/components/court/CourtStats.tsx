@@ -8,9 +8,18 @@ export const DeuceStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
     let locationTotal: number = 0;
     let servesHit: number = 0;
 
-    // match.pointDetails.map();
+    match.pointDetails.map((point) => {
+      if (point.serving === user) {
+        if (point.side === 'deuce') {
+          if (point.firstServeLocation === location) locationTotal++;
+          if (point.secondServeLocation === location) locationTotal++;
+          if (point.secondServeLocation !== 'bypass') servesHit += 2;
+          else servesHit++;
+        }
+      }
+    });
 
-    return `Pls work`;
+    return `${Math.round((locationTotal / servesHit) * 100)}%`;
   };
 
   // TODO show difference in locations between first serve and second serve

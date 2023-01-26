@@ -177,18 +177,44 @@ export const AdStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
 };
 
 export const ReturnStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
+  // calculates return percentage to each location and win percentage
+  const shotAndWinPercentage = (location: string, user: boolean): string => {
+    let locationTotal: number = 0;
+    let returnsHit: number = 0;
+    let pointsWon: number = 0;
+
+    match.pointDetails.map((point) => {
+      if (!point.serving === user) {
+        if (point.location !== 'bypass') {
+          // updating returns hit and total returns
+          if (point.location === location) {
+            locationTotal++;
+            if (point.won === user) pointsWon++;
+          }
+          returnsHit++;
+        }
+      }
+    });
+
+    return `${Math.round((locationTotal / returnsHit) * 100)}% hit ${Math.round(
+      (pointsWon / locationTotal) * 100
+    )}% won`;
+  };
+
   return (
     <div>
       <button
         className="h-12 mb-2 bg-red-500 rounded"
         style={{ width: '42rem' }}
       >
-        <p>Long</p>
+        <p>{shotAndWinPercentage('long', user)}</p>
       </button>
       <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley">
           <button className="absolute flex items-center justify-center bg-red-500 rounded inset-2">
-            <p className="-rotate-90">Wide on deuce side</p>
+            <p className="-rotate-90">
+              {shotAndWinPercentage('wide_deuce', user)}
+            </p>
           </button>
         </div>
         <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind">

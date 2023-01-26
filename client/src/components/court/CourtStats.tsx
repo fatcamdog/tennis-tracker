@@ -218,24 +218,40 @@ export const ReturnStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
           </button>
         </div>
         <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind">
-          <button className="w-2/3 h-full bg-green-500 rounded"></button>
-          <button className="w-1/3 h-full bg-green-500 rounded rounded-tr-none rounded-br-none"></button>
+          <button className="w-2/3 h-full bg-green-500 rounded">
+            {shotAndWinPercentage('deep_deuce', user)}
+          </button>
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tr-none rounded-br-none">
+            {shotAndWinPercentage('deep_middle', user)}
+          </button>
         </div>
         <div className="flex justify-end gap-2 p-2 pl-0 bg-blue-400 grid-in-right-behind">
-          <button className="w-1/3 h-full bg-green-500 rounded rounded-tl-none rounded-bl-none"></button>
-          <button className="w-2/3 h-full bg-green-500 rounded"></button>
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tl-none rounded-bl-none">
+            {/* {shotAndWinPercentage('deep_middle', user)} */}
+          </button>
+          <button className="w-2/3 h-full bg-green-500 rounded">
+            {shotAndWinPercentage('deep_ad', user)}
+          </button>
         </div>
         <div className="flex gap-2 p-2 pr-0 bg-blue-400 outline outline-2 outline-white grid-in-deuce">
-          <button className="w-2/3 h-full bg-green-500 rounded"></button>
-          <button className="w-1/3 h-full bg-green-500 rounded rounded-tr-none rounded-br-none"></button>
+          <button className="w-2/3 h-full bg-green-500 rounded">
+            {shotAndWinPercentage('short_deuce', user)}
+          </button>
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tr-none rounded-br-none">
+            {shotAndWinPercentage('short_middle', user)}
+          </button>
         </div>
         <div className="flex justify-end gap-2 p-2 pl-0 bg-blue-400 outline outline-2 outline-white grid-in-ad">
-          <button className="w-1/3 h-full bg-green-500 rounded rounded-tl-none rounded-bl-none"></button>
-          <button className="w-2/3 h-full bg-green-500 rounded"></button>
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tl-none rounded-bl-none">
+            {/* {shotAndWinPercentage('short_middle', user)} */}
+          </button>
+          <button className="w-2/3 h-full bg-green-500 rounded">
+            {shotAndWinPercentage('short_ad', user)}
+          </button>
         </div>
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-right-alley">
           <button className="absolute flex items-center justify-center bg-red-500 rounded inset-2">
-            <p className="rotate-90">Wide on ad side</p>
+            <p className="rotate-90">{shotAndWinPercentage('wide_ad', user)}</p>
           </button>
         </div>
       </div>
@@ -243,7 +259,7 @@ export const ReturnStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
         className="h-12 mt-2 bg-red-500 rounded grid-in-net"
         style={{ width: '42rem' }}
       >
-        <p>Net</p>
+        <p>{shotAndWinPercentage('net', user)}</p>
       </button>
     </div>
   );

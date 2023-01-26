@@ -24,10 +24,25 @@ const Navbar: FC<IUserProps> = ({ user }) => {
       </div>
       {user ? (
         <>
-          <div>
-            <Link to="/matches">Matches</Link>
-            <Link to="/matches/analytics">Analytics</Link>
-            <Link to="/matches/opponents">Opponents</Link>
+          <div className="flex gap-4 text-lg">
+            <Link
+              to="/matches"
+              className="hover:text-accent relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:scale-0 after:hover:scale-100 after:transition-transform after:origin-left after:duration-200"
+            >
+              Matches
+            </Link>
+            <Link
+              to="/matches/analytics"
+              className="hover:text-accent relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:scale-0 after:hover:scale-100 after:transition-transform after:origin-left after:duration-200"
+            >
+              Progress
+            </Link>
+            <Link
+              to="/matches/opponents"
+              className="hover:text-accent relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:scale-0 after:hover:scale-100 after:transition-transform after:origin-left after:duration-200"
+            >
+              Opponents
+            </Link>
           </div>
           <div className="flex items-center">
             <p className="mr-5 text-primary">{user.name}</p>

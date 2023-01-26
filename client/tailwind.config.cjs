@@ -2,7 +2,18 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    backgroundSize: {
+      link: '200% 100%',
+    },
+    backgroundPosition: {
+      reverse: '-100%',
+      normal: '0',
+    },
     extend: {
+      colors: {
+        start: '#8BE8CB',
+        stop: '#000 50%',
+      },
       gridTemplateAreas: {
         court: [
           'left-alley left-behind right-behind right-alley',

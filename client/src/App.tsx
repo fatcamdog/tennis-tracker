@@ -16,7 +16,6 @@ import Analytics from './components/analytics/Analytics';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 import { login } from './redux/auth';
 import { IUserState } from './utils/interfaces';
-import { useLogout } from './hooks/authHooks';
 
 import './index.css';
 
@@ -30,7 +29,6 @@ export default function App() {
 
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  const { logoutUser } = useLogout();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user')!);

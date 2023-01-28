@@ -8,8 +8,6 @@ const Navbar: FC<IUserProps> = ({ user }) => {
   const { logoutUser } = useLogout();
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   // logout user
   const handleLogout = () => {
     logoutUser();
@@ -72,11 +70,23 @@ const Navbar: FC<IUserProps> = ({ user }) => {
           </div>
         </>
       ) : (
-        <div>
-          <Link to="/signup" className="mr-3">
+        <div className="text-lg">
+          <Link
+            to="/signup"
+            className={`mr-3 hover:text-accent relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:scale-0 after:hover:scale-100 after:transition-transform after:origin-left after:duration-200 ${
+              pathname === '/signup' ? 'after:scale-100 text-accent' : ''
+            }`}
+          >
             Sign Up
           </Link>
-          <Link to="/login">Log In</Link>
+          <Link
+            to="/login"
+            className={`hover:text-accent relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent after:scale-0 after:hover:scale-100 after:transition-transform after:origin-left after:duration-200 ${
+              pathname === '/login' ? 'after:scale-100 text-accent' : ''
+            }`}
+          >
+            Log In
+          </Link>
         </div>
       )}
     </nav>

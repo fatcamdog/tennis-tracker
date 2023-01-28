@@ -37,7 +37,13 @@ export default function Analytics() {
                     <ServeDiagramAnalytics match={match} user={user!} />
                   </div>
                 ) : (
-                  <div>Other tracking modes</div>
+                  <>
+                    {match.trackingMode === 'rallying' ? (
+                      <div>Rallying</div>
+                    ) : (
+                      <>Other tracking mode</>
+                    )}
+                  </>
                 )}
               </div>
             </div>

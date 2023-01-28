@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 import BasicAnalytics from './BasicAnalytics';
 import ServingStats from './ServingStats';
 import { ServeDiagramAnalytics } from './DiagramAnalytics';
+import RallyingStats from './RallyingStats';
 
 export default function Analytics() {
   const { id } = useParams();
@@ -28,10 +29,10 @@ export default function Analytics() {
           ) : (
             <div>
               <div>
-                <BasicAnalytics match={match} user={user!} />
-                <br />
                 {match.trackingMode === 'starting' ? (
                   <div>
+                    <BasicAnalytics match={match} user={user!} />
+                    <br />
                     <ServingStats match={match} user={user!} />
                     <br />
                     <ServeDiagramAnalytics match={match} user={user!} />
@@ -39,9 +40,19 @@ export default function Analytics() {
                 ) : (
                   <>
                     {match.trackingMode === 'rallying' ? (
-                      <div>Rallying</div>
+                      <div>
+                        <BasicAnalytics match={match} user={user!} />
+                        <br />
+                        <RallyingStats />
+                      </div>
                     ) : (
-                      <>Other tracking mode</>
+                      <>
+                        {match.trackingMode === 'mentality' ? (
+                          <div>Mentality</div>
+                        ) : (
+                          <div>Something went wrong</div>
+                        )}
+                      </>
                     )}
                   </>
                 )}

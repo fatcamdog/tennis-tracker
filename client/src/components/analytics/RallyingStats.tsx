@@ -18,6 +18,19 @@ const RallyingStats: FC = () => {
     return errorCount;
   };
 
+  // calculates amount of winners for each player
+  const winners = (user: boolean): number => {
+    let winnerCount: number = 0;
+
+    match.pointDetails.map((point) => {
+      if (point.won === user && point.method === 'winner') {
+        winnerCount++;
+      }
+    });
+
+    return winnerCount;
+  };
+
   return (
     <div>
       <div>
@@ -25,7 +38,7 @@ const RallyingStats: FC = () => {
         <div>
           <p>Unforced errors: {errors('unforced_error', true)}</p>
           <p>Forced errors: {errors('forced_error', true)}</p>
-          <p>Winners</p>
+          <p>Winners: {winners(true)}</p>
           <p>Unforced errors on forehand</p>
           <p>Unforced errors on backhand</p>
           <p>Forced errors on forehand</p>

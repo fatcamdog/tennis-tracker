@@ -37,7 +37,8 @@ const RallyingStats: FC = () => {
         <p>{user?.name}:</p>
         <div>
           <p>Unforced errors: {unforcedErrors(true)}</p>
-          <p>Forced errors: </p>
+          <p>Foreced errors: </p>
+          <p>Forceing shots: </p>
           <p>Winners: {winners(true)}</p>
           <p>Unforced errors on forehand</p>
           <p>Unforced errors on backhand</p>

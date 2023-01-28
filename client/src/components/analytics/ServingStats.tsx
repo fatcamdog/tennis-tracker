@@ -189,6 +189,8 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
       <div>
         <h3>{user.name}:</h3>
         <div>
+          <p>Serving win percentage</p>
+          <p>Returning win percentage</p>
           <p>First serve percentage: {firstServePercentage(true)}</p>
           <p>First serve win percentage: {firstServeWinPercentage(true)}</p>
           <p>Second serve percentage: {secondServePercentage(true)}</p>
@@ -205,11 +207,11 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
             {percentageForehandAndBackhandReturns(true, 'backhand')}
           </p>
           <p>
-            Percentage points won on forehand return:{' '}
+            Percentage points won when returner hits forehand:{' '}
             {percentageForehandAndBackhandReturnsWon(true, 'forehand')}
           </p>
           <p>
-            Percentage points won on backhand return:{' '}
+            Percentage points won when returner hits backhand:{' '}
             {percentageForehandAndBackhandReturnsWon(true, 'backhand')}
           </p>
         </div>
@@ -218,6 +220,8 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
       <div>
         <h3>{match.opponent}</h3>
         <div>
+          <p>Serving win percentage</p>
+          <p>Returning win percentage</p>
           <p>First serve percentage: {firstServePercentage(false)}</p>
           <p>First serve win percentage: {firstServeWinPercentage(false)}</p>
           <p>Second serve percentage: {secondServePercentage(false)}</p>
@@ -234,11 +238,11 @@ const ServingStats: FC<IMatchUserProps> = ({ match, user }) => {
             {percentageForehandAndBackhandReturns(false, 'backhand')}
           </p>
           <p>
-            Percentage points won on forehand return:{' '}
+            Percentage points won when returner hits forehand:{' '}
             {percentageForehandAndBackhandReturnsWon(false, 'forehand')}
           </p>
           <p>
-            Percentage points won on backhand return:{' '}
+            Percentage points won when returner hits backhand:{' '}
             {percentageForehandAndBackhandReturnsWon(false, 'backhand')}
           </p>
         </div>

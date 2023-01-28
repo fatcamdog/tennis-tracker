@@ -5,12 +5,12 @@ const RallyingStats: FC = () => {
   const { match } = useAppSelector((state) => state.matches);
   const { user } = useAppSelector((state) => state.auth);
 
-  // calculates amount of unforced errors and forced errors for both players
-  const errors = (method: string, user: boolean): number => {
+  // calculates amount of unforced errors for both players
+  const unforcedErrors = (user: boolean): number => {
     let errorCount: number = 0;
 
     match.pointDetails.map((point) => {
-      if (!point.won === user && point.method === method) {
+      if (!point.won === user && point.method === 'unforced_error') {
         errorCount++;
       }
     });
@@ -36,8 +36,8 @@ const RallyingStats: FC = () => {
       <div>
         <p>{user?.name}:</p>
         <div>
-          <p>Unforced errors: {errors('unforced_error', true)}</p>
-          <p>Forced errors: {errors('forced_error', true)}</p>
+          <p>Unforced errors: {unforcedErrors(true)}</p>
+          <p>Forced errors: </p>
           <p>Winners: {winners(true)}</p>
           <p>Unforced errors on forehand</p>
           <p>Unforced errors on backhand</p>

@@ -2,10 +2,13 @@ import { FC } from 'react';
 
 import { IHandleSideStageProps } from '../../../utils/interfaces';
 
-const SideStage: FC<IHandleSideStageProps> = ({ handleShotSide }) => {
+const SideStage: FC<IHandleSideStageProps> = ({ handleShotSide, hitter }) => {
   return (
     <div>
-      <p>What side was the last shot on?</p>
+      <p>
+        What side was {hitter === 'user' ? 'your' : "the opponent's"} last shot
+        on?
+      </p>
       <div>
         <button
           className="btn btn-accent"

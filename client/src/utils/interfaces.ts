@@ -114,6 +114,7 @@ export interface IHandleMethodStageProps {
 
 export interface IHandleSideStageProps {
   handleShotSide: (arg0: string) => void;
+  hitter: string;
 }
 
 export interface IHandleTypeStageProps {

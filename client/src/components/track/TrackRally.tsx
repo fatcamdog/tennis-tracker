@@ -264,7 +264,10 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
               ) : (
                 <>
                   {sideStage ? (
-                    <SideStage handleShotSide={handleShotSide} />
+                    <SideStage
+                      handleShotSide={handleShotSide}
+                      hitter={shotHitter}
+                    />
                   ) : (
                     <>
                       {typeStage ? (

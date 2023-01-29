@@ -4,11 +4,13 @@ import { IHandleMethodStageProps } from '../../../utils/interfaces';
 
 const MethodStage: FC<IHandleMethodStageProps> = ({
   handleShotMethod,
-  shotInPlay,
+  hitter,
 }) => {
   return (
     <div>
-      <p>What caused the last shot?</p>
+      <p>
+        What caused {hitter === 'user' ? 'your' : "the opponent's"} last shot?
+      </p>
       <div>
         <button
           className="btn btn-accent"

@@ -259,7 +259,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
               {methodStage ? (
                 <MethodStage
                   handleShotMethod={handleShotMethod}
-                  shotInPlay={shotInPlay}
+                  hitter={shotHitter}
                 />
               ) : (
                 <>

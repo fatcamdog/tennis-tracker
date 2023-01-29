@@ -64,6 +64,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     // handle exception -> shot out
     if (!inPlay) {
       setShotInPlay(false);
+    } else {
+      setShotInPlay(true);
     }
 
     // hide location stage and show method stage

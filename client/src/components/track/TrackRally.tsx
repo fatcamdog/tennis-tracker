@@ -81,8 +81,6 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     // hide hitter and show method stage
     setHitterStage(false);
 
-    console.log(shotInPlay);
-
     if (!shotInPlay) {
       setMethodStage(true);
     } else {

@@ -26,12 +26,6 @@ const SideStage: FC<IHandleSideStageProps> = ({ handleShotSide }) => {
         >
           Overhead
         </button>
-        <button
-          className="btn btn-accent"
-          onClick={() => handleShotSide('serve')}
-        >
-          Serve
-        </button>
       </div>
     </div>
   );

@@ -2,10 +2,12 @@ import { FC } from 'react';
 
 import { IHandleTypeStageProps } from '../../../utils/interfaces';
 
-const TypeStage: FC<IHandleTypeStageProps> = ({ handleShotType }) => {
+const TypeStage: FC<IHandleTypeStageProps> = ({ handleShotType, hitter }) => {
   return (
     <div>
-      <p>What type was your last shot?</p>
+      <p>
+        What type of shot did {hitter === 'user' ? 'you' : 'the opponent'} hit?
+      </p>
       <div>
         <button
           className="btn btn-accent"

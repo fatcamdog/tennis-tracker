@@ -5,7 +5,7 @@ import { IHandleSideStageProps } from '../../../utils/interfaces';
 const SideStage: FC<IHandleSideStageProps> = ({ handleShotSide }) => {
   return (
     <div>
-      <p>What side was your last shot on?</p>
+      <p>What side was the last shot on?</p>
       <div>
         <button
           className="btn btn-accent"

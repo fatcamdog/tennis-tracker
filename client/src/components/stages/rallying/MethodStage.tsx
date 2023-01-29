@@ -8,7 +8,7 @@ const MethodStage: FC<IHandleMethodStageProps> = ({
 }) => {
   return (
     <div>
-      <p>What caused your last shot?</p>
+      <p>What caused the last shot?</p>
       <div>
         <button
           className="btn btn-accent"

@@ -18,6 +18,10 @@ const RallyingStats: FC = () => {
     return errorCount;
   };
 
+  // TODO calculates forceing errors
+
+  // TODO calculates forced shots
+
   // calculates amount of winners for each player
   const winners = (user: boolean): number => {
     let winnerCount: number = 0;

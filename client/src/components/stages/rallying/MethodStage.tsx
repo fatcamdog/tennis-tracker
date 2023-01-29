@@ -22,16 +22,6 @@ const MethodStage: FC<IHandleMethodStageProps> = ({
         >
           Forced error
         </button>
-        {!shotInPlay ? (
-          <></>
-        ) : (
-          <button
-            className="btn btn-accent"
-            onClick={() => handleShotMethod('winner')}
-          >
-            Winner
-          </button>
-        )}
       </div>
     </div>
   );

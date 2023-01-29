@@ -23,7 +23,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const [pointWon, setPointWon] = useState<boolean>(false);
   // stroke will be combination of side and type -> forehand_groundstroke
   const [shotStroke, setShotStroke] = useState<string>('');
-  // chekc if shot was in play or not
+  // check if shot was in play or not
   const [shotInPlay, setShotInPlay] = useState<boolean>(true);
 
   const [locationStage, setLocationStage] = useState<boolean>(true);
@@ -78,7 +78,13 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
   const handleShotHitter = (hitter: string) => {
     // hide hitter and show method stage
     setHitterStage(false);
-    setMethodStage(true);
+
+    if (!shotInPlay) {
+      setMethodStage(true);
+    } else {
+      setShotMethod('winner');
+      setSideStage(true);
+    }
 
     // update hitter state
     setShotHitter(hitter);
@@ -127,6 +133,17 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     if (!shotInPlay) {
       handlePointFinish(
         shotHitter === 'user' ? false : true,
+        shotLocation,
+        shotHitter,
+        shotMethod,
+        updateStroke(shotSide, type)
+      );
+    }
+
+    // handle exception -> winner
+    if (shotInPlay) {
+      handlePointFinish(
+        shotHitter === 'user' ? true : false,
         shotLocation,
         shotHitter,
         shotMethod,

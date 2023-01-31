@@ -58,7 +58,7 @@ const RallyingStats: FC = () => {
   };
 
   // counts unforced and forced errors for forehand or backhand
-  const sideSpecificErrors = (
+  const sideSpecificStats = (
     user: string,
     side: string,
     method: string
@@ -89,22 +89,40 @@ const RallyingStats: FC = () => {
           <p>Winners: {winners(true)}</p>
           <p>
             Unforced errors on forehand:{' '}
-            {sideSpecificErrors('user', 'forehand', 'unforced_error')}
+            {sideSpecificStats('user', 'forehand', 'unforced_error')}
           </p>
           <p>
             Unforced errors on forehand:{' '}
-            {sideSpecificErrors('user', 'backhand', 'unforced_error')}
+            {sideSpecificStats('user', 'backhand', 'unforced_error')}
+          </p>
+          <p>
+            Unforced errors on overhead:{' '}
+            {sideSpecificStats('user', 'overhead', 'unforced_error')}
           </p>
           <p>
             Forced errors on forehand:{' '}
-            {sideSpecificErrors('user', 'forehand', 'forced_error')}
+            {sideSpecificStats('user', 'forehand', 'forced_error')}
           </p>
           <p>
             Forced errors on backhand:{' '}
-            {sideSpecificErrors('user', 'backhand', 'forced_error')}
+            {sideSpecificStats('user', 'backhand', 'forced_error')}
           </p>
-          <p>Winners on forehand</p>
-          <p>Winners on backhand</p>
+          <p>
+            Forced errors on overhead:{' '}
+            {sideSpecificStats('user', 'overhead', 'forced_error')}
+          </p>
+          <p>
+            Winners on forehand:{' '}
+            {sideSpecificStats('user', 'forehand', 'winner')}
+          </p>
+          <p>
+            Winners on backhand:{' '}
+            {sideSpecificStats('user', 'backhand', 'winner')}
+          </p>
+          <p>
+            Winners on overhead:{' '}
+            {sideSpecificStats('user', 'overhead', 'winner')}
+          </p>
           <p>Unforced errors on groundstrokes</p>
           <p>Forced errors on groundstrokes</p>
           <p>Winners on groundstrokes</p>

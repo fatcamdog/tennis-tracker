@@ -19,9 +19,9 @@ const RallyingStats: FC = () => {
   };
 
   // counts unforced and forced errors for forehand or backhand
-  const sideSpecificStats = (
+  const typeSpecificStats = (
     user: string,
-    side: string,
+    type: string,
     method: string
   ): number => {
     let unforcedErrors: number = 0;
@@ -29,7 +29,7 @@ const RallyingStats: FC = () => {
     match.pointDetails.map((point) => {
       if (
         point.hitter === user &&
-        point.stroke!.indexOf(side) > -1 &&
+        point.stroke!.indexOf(type) > -1 &&
         point.method === method
       ) {
         unforcedErrors++;
@@ -50,39 +50,39 @@ const RallyingStats: FC = () => {
           <p>Winners: {totalStats('user', 'winner')}</p>
           <p>
             Unforced errors on forehand:{' '}
-            {sideSpecificStats('user', 'forehand', 'unforced_error')}
+            {typeSpecificStats('user', 'forehand', 'unforced_error')}
           </p>
           <p>
             Unforced errors on forehand:{' '}
-            {sideSpecificStats('user', 'backhand', 'unforced_error')}
+            {typeSpecificStats('user', 'backhand', 'unforced_error')}
           </p>
           <p>
             Unforced errors on overhead:{' '}
-            {sideSpecificStats('user', 'overhead', 'unforced_error')}
+            {typeSpecificStats('user', 'overhead', 'unforced_error')}
           </p>
           <p>
             Forced errors on forehand:{' '}
-            {sideSpecificStats('user', 'forehand', 'forced_error')}
+            {typeSpecificStats('user', 'forehand', 'forced_error')}
           </p>
           <p>
             Forced errors on backhand:{' '}
-            {sideSpecificStats('user', 'backhand', 'forced_error')}
+            {typeSpecificStats('user', 'backhand', 'forced_error')}
           </p>
           <p>
             Forced errors on overhead:{' '}
-            {sideSpecificStats('user', 'overhead', 'forced_error')}
+            {typeSpecificStats('user', 'overhead', 'forced_error')}
           </p>
           <p>
             Winners on forehand:{' '}
-            {sideSpecificStats('user', 'forehand', 'winner')}
+            {typeSpecificStats('user', 'forehand', 'winner')}
           </p>
           <p>
             Winners on backhand:{' '}
-            {sideSpecificStats('user', 'backhand', 'winner')}
+            {typeSpecificStats('user', 'backhand', 'winner')}
           </p>
           <p>
             Winners on overhead:{' '}
-            {sideSpecificStats('user', 'overhead', 'winner')}
+            {typeSpecificStats('user', 'overhead', 'winner')}
           </p>
           <p>Unforced errors on groundstrokes</p>
           <p>Forced errors on groundstrokes</p>

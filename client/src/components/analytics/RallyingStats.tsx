@@ -103,8 +103,6 @@ const RallyingStats: FC = () => {
             Forced errors on backhand:{' '}
             {sideSpecificErrors(true, 'backhand', 'forced_error')}
           </p>
-          <p>Forceing shots on forehand</p>
-          <p>Forceing shots on backhand</p>
           <p>Winners on forehand</p>
           <p>Winners on backhand</p>
           <p>Unforced errors on groundstrokes</p>

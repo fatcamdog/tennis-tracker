@@ -272,16 +272,33 @@ export const RallyCourtStats: FC<IUserStatsProps> = ({ user }) => {
 
   // calculates precentage of shots and win percentage on each court section
   const shotAndWinPercentage = (location: string, user: string): string => {
+    let userBool: boolean;
     let shotsTotal: number = 0;
     let shotStargetsHit: number = 0; // how many shots went to that one location: ex. long
     let pointsWon: number = 0;
 
+    if (user === 'user') userBool = true;
+    if (user === 'opponent') userBool = false;
+
     match.pointDetails.map((point) => {
+      // check if user or opponent hit the shot
       if (point.hitter === user) {
+        // check if shot went to right location
+        if (point.location === location) {
+          shotStargetsHit++;
+          // check if point was won in that location
+          if (point.won === userBool) {
+            pointsWon++;
+          }
+        }
+        // increase total shots hit by user or opponent
+        shotsTotal++;
       }
     });
 
-    return `0% hit 0% won`;
+    return `${Math.round(
+      (shotStargetsHit / shotsTotal) * 100
+    )}% hit ${Math.round((pointsWon / shotStargetsHit) * 100)}% won`;
   };
 
   return (

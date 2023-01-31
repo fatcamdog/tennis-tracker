@@ -84,7 +84,10 @@ const RallyingStats: FC = () => {
             Winners on overhead:{' '}
             {typeSpecificStats('user', 'overhead', 'winner')}
           </p>
-          <p>Unforced errors on groundstrokes</p>
+          <p>
+            Unforced errors on groundstrokes:{' '}
+            {typeSpecificStats('user', 'groundstroke', 'unforced_error')}
+          </p>
           <p>Forced errors on groundstrokes</p>
           <p>Winners on groundstrokes</p>
           <p>Unforced errors on volleys</p>

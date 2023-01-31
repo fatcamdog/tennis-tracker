@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { useAppSelector } from '../../hooks/reduxHooks';
+
 import { IMatchUserStatsProps } from '../../utils/interfaces';
 
 export const DeuceStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
@@ -266,5 +268,57 @@ export const ReturnStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
 };
 
 export const RallyCourtStats: FC = () => {
-  return <div>Rally court stats</div>;
+  const { match } = useAppSelector((state) => state.matches);
+
+  return (
+    <div>
+      <div>
+        <p>Rally court stats</p>
+      </div>
+      <button
+        className="h-12 mb-2 bg-red-500 rounded"
+        style={{ width: '42rem' }}
+      >
+        <p></p>
+      </button>
+      <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
+        <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley">
+          <button className="absolute flex items-center justify-center bg-red-500 rounded inset-2">
+            <p className="-rotate-90"></p>
+          </button>
+        </div>
+        <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind">
+          <button className="w-2/3 h-full bg-green-500 rounded"></button>
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tr-none rounded-br-none"></button>
+        </div>
+        <div className="flex justify-end gap-2 p-2 pl-0 bg-blue-400 grid-in-right-behind">
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tl-none rounded-bl-none">
+            {/* {shotAndWinPercentage('deep_middle', user)} */}
+          </button>
+          <button className="w-2/3 h-full bg-green-500 rounded"></button>
+        </div>
+        <div className="flex gap-2 p-2 pr-0 bg-blue-400 outline outline-2 outline-white grid-in-deuce">
+          <button className="w-2/3 h-full bg-green-500 rounded"></button>
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tr-none rounded-br-none"></button>
+        </div>
+        <div className="flex justify-end gap-2 p-2 pl-0 bg-blue-400 outline outline-2 outline-white grid-in-ad">
+          <button className="w-1/3 h-full bg-green-500 rounded rounded-tl-none rounded-bl-none">
+            {/* {shotAndWinPercentage('short_middle', user)} */}
+          </button>
+          <button className="w-2/3 h-full bg-green-500 rounded"></button>
+        </div>
+        <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-right-alley">
+          <button className="absolute flex items-center justify-center bg-red-500 rounded inset-2">
+            <p className="rotate-90"></p>
+          </button>
+        </div>
+      </div>
+      <button
+        className="h-12 mt-2 bg-red-500 rounded grid-in-net"
+        style={{ width: '42rem' }}
+      >
+        <p></p>
+      </button>
+    </div>
+  );
 };

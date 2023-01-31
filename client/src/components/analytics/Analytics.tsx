@@ -44,10 +44,10 @@ export default function Analytics() {
                   <>
                     {match.trackingMode === 'rallying' ? (
                       <div>
-                        <BasicAnalytics match={match} user={user!} />
+                        {/* <BasicAnalytics match={match} user={user!} />
                         <br />
                         <RallyingStats />
-                        <br />
+                        <br /> */}
                         <ReturnDiagramAnalytics />
                       </div>
                     ) : (

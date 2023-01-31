@@ -55,8 +55,8 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
 export const ReturnDiagramAnalytics: FC = () => {
   return (
     <>
-      <PlusMinus />
-      <br />
+      {/* <PlusMinus />
+      <br /> */}
       <RallyCourtStats />
     </>
   );

@@ -161,5 +161,5 @@ export interface IMatchUserStatsProps {
 }
 
 export interface IUserStatsProps {
-  user: boolean;
+  user: string;
 }

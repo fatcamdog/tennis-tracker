@@ -57,9 +57,9 @@ export const ReturnDiagramAnalytics: FC = () => {
     <>
       {/* <PlusMinus />
       <br /> */}
-      <RallyCourtStats user={true} />
+      <RallyCourtStats user={'user'} />
       <br />
-      <RallyCourtStats user={false} />
+      <RallyCourtStats user={'opponent'} />
     </>
   );
 };

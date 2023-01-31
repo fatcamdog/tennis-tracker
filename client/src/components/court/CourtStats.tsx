@@ -264,3 +264,7 @@ export const ReturnStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
     </div>
   );
 };
+
+export const RallyCourtStats: FC = () => {
+  return <div>Rally court stats</div>;
+};

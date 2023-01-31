@@ -63,20 +63,23 @@ const PlusMinus: FC = () => {
 
   return (
     <div>
-      <p>
-        <b>Agressive margin</b> is a scoring stat in tennis. It takes into
-        account unforced errors which subract your score by 1 and forceing shots
-        or winners which add 1 to your score.
-      </p>
-      <p>
-        Roger Federer: <b>+25</b>
-      </p>
-      <p>
-        Top juniors: <b>+10</b>
-      </p>
-      <p>
-        Average adult <b>-15</b>
-      </p>
+      <div>
+        <p>
+          <b>Agressive margin</b> is a scoring stat in tennis. It takes into
+          account unforced errors which subract your score by 1 and forceing
+          shots or winners which add 1 to your score.
+        </p>
+        <p>
+          Roger Federer: <b>+25</b>
+        </p>
+        <p>
+          Top juniors: <b>+10</b>
+        </p>
+        <p>
+          Average adult <b>-15</b>
+        </p>
+      </div>
+      <br />
       <div>
         <p>{user?.name}</p>
         <div>

@@ -2,7 +2,13 @@ import { FC } from 'react';
 
 import { IMatchUserProps } from '../../utils/interfaces';
 
-import { DeuceStats, AdStats, ReturnStats } from '../court/CourtStats';
+import {
+  DeuceStats,
+  AdStats,
+  ReturnStats,
+  RallyCourtStats,
+} from '../court/CourtStats';
+import PlusMinus from '../court/PlusMinus';
 
 export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
   return (
@@ -43,5 +49,15 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+export const ReturnDiagramAnalytics: FC = () => {
+  return (
+    <>
+      <PlusMinus />
+      <br />
+      <RallyCourtStats />
+    </>
   );
 };

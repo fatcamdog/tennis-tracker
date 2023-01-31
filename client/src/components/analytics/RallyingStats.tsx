@@ -107,9 +107,6 @@ const RallyingStats: FC = () => {
           <p>
             Winners on volleys: {typeSpecificStats('user', 'volley', 'winner')}
           </p>
-          <p>Unforced errors on overheads</p>
-          <p>Forced errors on overhead</p>
-          <p>Winners on overheads</p>
           <p>Unforced errors on slices</p>
           <p>Forced errors on slices</p>
           <p>Winners on slices</p>

@@ -112,20 +112,14 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
     setShotSide(side);
 
     // handle exception -> overhead
-    if (side === 'overhead' || side === 'serve') {
-      setTypeStage(false);
-      setPointWonStage(true);
-
-      // handle exception -> shot out
-      if (!shotInPlay) {
-        handlePointFinish(
-          shotHitter === 'user' ? false : true,
-          shotLocation,
-          shotHitter,
-          shotMethod,
-          side
-        );
-      }
+    if (side === 'overhead') {
+      handlePointFinish(
+        shotHitter === 'user' ? true : false,
+        shotLocation,
+        shotHitter,
+        shotMethod,
+        side
+      );
     }
   };
 

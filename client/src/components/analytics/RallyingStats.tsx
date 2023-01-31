@@ -118,9 +118,18 @@ const RallyingStats: FC = () => {
           <p>
             Winners on slices: {typeSpecificStats('user', 'slice', 'winner')}
           </p>
-          <p>Unforced errors on dropshots</p>
-          <p>Forced errors on dropshots</p>
-          <p>Winners on dropshots</p>
+          <p>
+            Unforced errors on dropshots:{' '}
+            {typeSpecificStats('user', 'dropshot', 'unforced_error')}
+          </p>
+          <p>
+            Forced errors on dropshots:{' '}
+            {typeSpecificStats('user', 'dropshot', 'forced_error')}
+          </p>
+          <p>
+            Winners on dropshots:{' '}
+            {typeSpecificStats('user', 'dropshot', 'winner')}
+          </p>
         </div>
       </div>
       <br />

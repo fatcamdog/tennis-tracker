@@ -7,6 +7,7 @@ import BasicAnalytics from './BasicAnalytics';
 import ServingStats from './ServingStats';
 import { ServeDiagramAnalytics } from './DiagramAnalytics';
 import RallyingStats from './RallyingStats';
+import PlusMinus from '../court/PlusMinus';
 
 export default function Analytics() {
   const { id } = useParams();
@@ -41,9 +42,11 @@ export default function Analytics() {
                   <>
                     {match.trackingMode === 'rallying' ? (
                       <div>
-                        <BasicAnalytics match={match} user={user!} />
+                        {/* <BasicAnalytics match={match} user={user!} />
                         <br />
                         <RallyingStats />
+                        <br /> */}
+                        <PlusMinus />
                       </div>
                     ) : (
                       <>

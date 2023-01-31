@@ -57,12 +57,20 @@ const RallyingStats: FC = () => {
     return winnerCount;
   };
 
-  // counts un forced erros for forehand or backhand
-  const sideSpecificUnforced = (user: boolean, side: string): number => {
+  // counts unforced and forced errors for forehand or backhand
+  const sideSpecificErrors = (
+    user: boolean,
+    side: string,
+    method: string
+  ): number => {
     let unforcedErrors: number = 0;
 
     match.pointDetails.map((point) => {
-      if (point.won !== user && point.stroke!.indexOf(side) > -1) {
+      if (
+        point.won !== user &&
+        point.stroke!.indexOf(side) > -1 &&
+        point.method === method
+      ) {
         unforcedErrors++;
       }
     });
@@ -81,14 +89,22 @@ const RallyingStats: FC = () => {
           <p>Winners: {winners(true)}</p>
           <p>
             Unforced errors on forehand:{' '}
-            {sideSpecificUnforced(true, 'forehand')}
+            {sideSpecificErrors(true, 'forehand', 'unforced_error')}
           </p>
           <p>
             Unforced errors on forehand:{' '}
-            {sideSpecificUnforced(true, 'backhand')}
+            {sideSpecificErrors(true, 'backhand', 'unforced_error')}
           </p>
-          <p>Forced errors on forehand</p>
-          <p>Forced errors on backhand</p>
+          <p>
+            Forced errors on forehand:{' '}
+            {sideSpecificErrors(true, 'forehand', 'forced_error')}
+          </p>
+          <p>
+            Forced errors on backhand:{' '}
+            {sideSpecificErrors(true, 'backhand', 'forced_error')}
+          </p>
+          <p>Forceing shots on forehand</p>
+          <p>Forceing shots on backhand</p>
           <p>Winners on forehand</p>
           <p>Winners on backhand</p>
           <p>Unforced errors on groundstrokes</p>

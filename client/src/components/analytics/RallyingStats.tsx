@@ -107,9 +107,17 @@ const RallyingStats: FC = () => {
           <p>
             Winners on volleys: {typeSpecificStats('user', 'volley', 'winner')}
           </p>
-          <p>Unforced errors on slices</p>
-          <p>Forced errors on slices</p>
-          <p>Winners on slices</p>
+          <p>
+            Unforced errors on slices:{' '}
+            {typeSpecificStats('user', 'slice', 'unforced_error')}
+          </p>
+          <p>
+            Forced errors on slices:{' '}
+            {typeSpecificStats('user', 'slice', 'forced_error')}
+          </p>
+          <p>
+            Winners on slices: {typeSpecificStats('user', 'slice', 'winner')}
+          </p>
           <p>Unforced errors on dropshots</p>
           <p>Forced errors on dropshots</p>
           <p>Winners on dropshots</p>

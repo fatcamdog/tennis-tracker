@@ -26,6 +26,41 @@ const PlusMinus: FC = () => {
     return score;
   };
 
+  // calculates aggresive margin (am) for one specific side
+  const sideScoreCalculator = (user: string, stroke: string): number => {
+    let score: number = 0;
+
+    match.pointDetails.map((point) => {
+      if (point.hitter === user) {
+        // check if it was unforced -> -1 from score
+        if (
+          (point.method === 'unforced_error' ||
+            point.method === 'double_fault') &&
+          point.stroke!.indexOf(stroke) > -1
+        ) {
+          score--;
+        }
+        // check if winner -> +1
+        if (
+          (point.method === 'winner' || point.method === 'ace') &&
+          point.stroke!.indexOf(stroke) > -1
+        ) {
+          score++;
+        }
+      }
+      // check if forceing error
+      if (
+        point.hitter !== user &&
+        point.method === 'forced_error' &&
+        point.stroke!.indexOf(stroke) > -1
+      ) {
+        score++;
+      }
+    });
+
+    return score;
+  };
+
   return (
     <div>
       <p>
@@ -46,11 +81,20 @@ const PlusMinus: FC = () => {
         <p>{user?.name}</p>
         <div>
           <p>Score: {scoreCalculator('user')}</p>
+          <p>Forehand score: {sideScoreCalculator('user', 'forehand')}</p>
+          <p>Backhand score: {sideScoreCalculator('user', 'backhand')}</p>
+          <p>Serve score: {sideScoreCalculator('user', 'serve')}</p>
+          <p>Overhead score: {sideScoreCalculator('user', 'overhead')}</p>
         </div>
       </div>
+      <br />
       <div>
         <p>{match.opponent}</p>
         <p>Score: {scoreCalculator('opponent')}</p>
+        <p>Forehand score: {sideScoreCalculator('opponent', 'forehand')}</p>
+        <p>Backhand score: {sideScoreCalculator('opponent', 'backhand')}</p>
+        <p>Serve: {sideScoreCalculator('opponent', 'serve')}</p>
+        <p>Overhead: {sideScoreCalculator('opponent', 'overhead')}</p>
       </div>
     </div>
   );

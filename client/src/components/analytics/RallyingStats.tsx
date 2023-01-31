@@ -5,56 +5,17 @@ const RallyingStats: FC = () => {
   const { match } = useAppSelector((state) => state.matches);
   const { user } = useAppSelector((state) => state.auth);
 
-  // calculates amount of unforced errors for both players
-  const unforcedErrors = (user: boolean): number => {
-    let errorCount: number = 0;
+  // calculates all 4 fields: unforced errors, forced errors, forceing shots, and winners
+  const totalStats = (user: string, method: string): number => {
+    let totalStats: number = 0;
 
     match.pointDetails.map((point) => {
-      if (point.won !== user && point.method === 'unforced_error') {
-        errorCount++;
+      if (point.hitter === user && point.method === method) {
+        totalStats++;
       }
     });
 
-    return errorCount;
-  };
-
-  // calculates forced errors
-  const forcedErrors = (user: boolean): number => {
-    let forcedErrors: number = 0;
-
-    match.pointDetails.map((point) => {
-      if (point.won !== user && point.method === 'forced_error') {
-        forcedErrors++;
-      }
-    });
-
-    return forcedErrors;
-  };
-
-  // calculates forced shots
-  const forceingShots = (user: boolean): number => {
-    let forceingShots: number = 0;
-
-    match.pointDetails.map((point) => {
-      if (point.won === user && point.method === 'forced_error') {
-        forceingShots++;
-      }
-    });
-
-    return forceingShots;
-  };
-
-  // calculates amount of winners for each player
-  const winners = (user: boolean): number => {
-    let winnerCount: number = 0;
-
-    match.pointDetails.map((point) => {
-      if (point.won === user && point.method === 'winner') {
-        winnerCount++;
-      }
-    });
-
-    return winnerCount;
+    return totalStats;
   };
 
   // counts unforced and forced errors for forehand or backhand
@@ -83,10 +44,10 @@ const RallyingStats: FC = () => {
       <div>
         <p>{user?.name}:</p>
         <div>
-          <p>Unforced errors: {unforcedErrors(true)}</p>
-          <p>Forced errors: {forcedErrors(true)}</p>
-          <p>Forceing shots: {forceingShots(true)}</p>
-          <p>Winners: {winners(true)}</p>
+          <p>Unforced errors: {totalStats('user', 'unforced_error')}</p>
+          <p>Forced errors: {totalStats('user', 'forced_error')}</p>
+          <p>Forceing shots: {totalStats('opponent', 'forced_error')}</p>
+          <p>Winners: {totalStats('user', 'winner')}</p>
           <p>
             Unforced errors on forehand:{' '}
             {sideSpecificStats('user', 'forehand', 'unforced_error')}

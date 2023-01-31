@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useAppSelector } from '../../hooks/reduxHooks';
 
-import { IMatchUserStatsProps } from '../../utils/interfaces';
+import { IMatchUserStatsProps, IUserStatsProps } from '../../utils/interfaces';
 
 export const DeuceStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
   // Calculates serve percentage to each location and win percentage
@@ -267,24 +267,47 @@ export const ReturnStats: FC<IMatchUserStatsProps> = ({ match, user }) => {
   );
 };
 
-export const RallyCourtStats: FC = () => {
+export const RallyCourtStats: FC<IUserStatsProps> = ({ user }) => {
   const { match } = useAppSelector((state) => state.matches);
+
+  // calculates precentage of shots and win percentage on each court section
+  const shotAndWinPercentage = (location: string, user: boolean): string => {
+    let locationTotal: number = 0;
+    let shotsHit: number = 0;
+    let pointsWon: number = 0;
+
+    match.pointDetails.map((point) => {
+      if (!point.serving === user) {
+        if (point.location !== 'bypass') {
+          // updating returns hit and total returns
+          if (point.location === location) {
+            locationTotal++;
+            if (point.won === user) pointsWon++;
+          }
+          shotsHit++;
+        }
+      }
+    });
+
+    return `${Math.round((locationTotal / shotsHit) * 100)}% hit ${Math.round(
+      (pointsWon / locationTotal) * 100
+    )}% won`;
+  };
 
   return (
     <div>
-      <div>
-        <p>Rally court stats</p>
-      </div>
       <button
         className="h-12 mb-2 bg-red-500 rounded"
         style={{ width: '42rem' }}
       >
-        <p></p>
+        <p>{shotAndWinPercentage('long', user)}</p>
       </button>
       <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley">
           <button className="absolute flex items-center justify-center bg-red-500 rounded inset-2">
-            <p className="-rotate-90"></p>
+            <p className="-rotate-90">
+              {shotAndWinPercentage('wide_deuce', user)}
+            </p>
           </button>
         </div>
         <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind">

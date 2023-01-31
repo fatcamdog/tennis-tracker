@@ -159,3 +159,7 @@ export interface IMatchUserStatsProps {
   match: IMatch;
   user: boolean;
 }
+
+export interface IUserStatsProps {
+  user: boolean;
+}

@@ -57,7 +57,9 @@ export const ReturnDiagramAnalytics: FC = () => {
     <>
       {/* <PlusMinus />
       <br /> */}
-      <RallyCourtStats />
+      <RallyCourtStats user={true} />
+      <br />
+      <RallyCourtStats user={false} />
     </>
   );
 };

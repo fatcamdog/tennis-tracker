@@ -6,6 +6,7 @@ import OngoingDetails from '../matches/OngoingDetails';
 import TrackDetails from './TrackDetails';
 import TrackServe from './TrackServe';
 import TrackRally from './TrackRally';
+import TrackMentality from './TrackMentality';
 
 export default function Tracker() {
   // finds match id
@@ -49,7 +50,7 @@ export default function Tracker() {
                       ) : (
                         <>
                           {match.trackingMode === 'mentality' ? (
-                            <h1>Tracking Mentality</h1>
+                            <TrackMentality />
                           ) : (
                             <div>Something went wrong</div>
                           )}

@@ -26,7 +26,6 @@ const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
         id: parseInt(id),
       },
     });
-
     next();
   } catch (error) {
     res.status(401).json({ error: 'Request is not authorized' });

@@ -8,7 +8,7 @@ import prisma from '../db/prisma';
 
 // // jwt token generator
 const createToken = (id: number) => {
-  return jwt.sign({ id }, process.env.SECRET!, { expiresIn: '5d' });
+  return jwt.sign({ id }, process.env.SECRET!);
 };
 
 // // login user

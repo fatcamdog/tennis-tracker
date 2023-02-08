@@ -35,7 +35,8 @@ const TrackMentality: FC = () => {
   };
 
   // handle user and opponent mental reactions
-  const handleMentalReaction = (reaction: string) => {
+  const handleMentalReaction = (user: boolean, reaction: string) => {
+    console.log(user);
     console.log(reaction);
   };
 
@@ -53,11 +54,21 @@ const TrackMentality: FC = () => {
       ) : (
         <>
           {userReactionStage ? (
-            <MentalReactionStage />
+            <MentalReactionStage
+              user={true}
+              userName={user!.name}
+              opponentName={match.opponent}
+              handleMentalReaction={handleMentalReaction}
+            />
           ) : (
             <>
               {opponentReactionStage ? (
-                <MentalReactionStage />
+                <MentalReactionStage
+                  user={false}
+                  userName={user!.name}
+                  opponentName={match.opponent}
+                  handleMentalReaction={handleMentalReaction}
+                />
               ) : (
                 <>
                   {notesStage ? (

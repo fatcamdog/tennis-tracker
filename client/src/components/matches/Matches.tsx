@@ -28,7 +28,7 @@ export default function Matches() {
       ) : (
         <div>
           {ongoingMatches.length == 0 && finishedMatches.length == 0 ? (
-            <h1>Create match and it will appear here</h1>
+            <h1>Create a match and it will appear here</h1>
           ) : (
             <div>
               <div>

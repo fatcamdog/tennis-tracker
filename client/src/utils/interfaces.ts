@@ -167,6 +167,13 @@ export interface IHandleMatchUserPointWonProps {
   handlePointWon: (arg0: boolean) => void;
 }
 
+export interface IHandleUserReactionProps {
+  user: boolean;
+  userName: string;
+  opponentName: string;
+  handleMentalReaction: (arg0: boolean, arg1: string) => void;
+}
+
 // // Interface for court diagram statistics
 export interface IMatchUserStatsProps {
   match: IMatch;

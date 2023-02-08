@@ -9,9 +9,12 @@ const TrackMentality: FC = () => {
   const [duration, setDuration] = useState<number>(0);
 
   const { match } = useAppSelector((state) => state.matches);
-  console.log(match);
 
-  return <div>Tracking mentality</div>;
+  return (
+    <div>
+      <Timer match={match} duration={duration} setDuration={setDuration} />
+    </div>
+  );
 };
 
 export default TrackMentality;

@@ -50,7 +50,10 @@ export default function Tracker() {
                       ) : (
                         <>
                           {match.trackingMode === 'mentality' ? (
-                            <TrackMentality />
+                            <div>
+                              <p>Tracking Mentality</p>
+                              <TrackMentality />
+                            </div>
                           ) : (
                             <div>Something went wrong</div>
                           )}

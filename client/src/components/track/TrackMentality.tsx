@@ -24,8 +24,14 @@ const TrackMentality: FC = () => {
   const { match } = useAppSelector((state) => state.matches);
   const { user } = useAppSelector((state) => state.auth);
 
+  // handle whether point was won or lost
   const handlePointWon = (won: boolean) => {
-    console.log(won);
+    // update pointWon state
+    setPointWon(won);
+
+    // go to next stage
+    setWonStage(false);
+    setUserReactionStage(true);
   };
 
   return (

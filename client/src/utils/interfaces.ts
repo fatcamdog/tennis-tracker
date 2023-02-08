@@ -154,6 +154,13 @@ export interface IHandleStartingPointWonProps {
   user: IUser;
 }
 
+// // Interfaces for updating mentality point tracker
+export interface IHandleMatchUserPointWonProps {
+  match: IMatch;
+  user: IUser;
+  handlePointWon: (arg0: boolean) => void;
+}
+
 // // Interface for court diagram statistics
 export interface IMatchUserStatsProps {
   match: IMatch;

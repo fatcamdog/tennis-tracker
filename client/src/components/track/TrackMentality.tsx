@@ -18,14 +18,25 @@ const TrackMentality: FC = () => {
     useState<boolean>(false);
   const [notesStage, setNotesStage] = useState<boolean>(false);
 
+  // point value variables
+  const [pointWon, setPointWon] = useState<boolean>(false);
+
   const { match } = useAppSelector((state) => state.matches);
   const { user } = useAppSelector((state) => state.auth);
+
+  const handlePointWon = (won: boolean) => {
+    console.log(won);
+  };
 
   return (
     <div>
       <Timer match={match} duration={duration} setDuration={setDuration} />
       {wonStage ? (
-        <PointWonStage />
+        <PointWonStage
+          match={match}
+          user={user!}
+          handlePointWon={handlePointWon}
+        />
       ) : (
         <>
           {userReactionStage ? (

@@ -48,25 +48,25 @@ model Match {
 
 // // Point details model
 model PointDetail {
-    id                  Int            @id @default(autoincrement())
+    id                  Int              @id @default(autoincrement())
     won                 Boolean
-    match               Match          @relation(fields: [matchId], references: [id], onDelete: Cascade)
+    match               Match            @relation(fields: [matchId], references: [id], onDelete: Cascade)
     serving             Boolean
     userGames           Int[]
     oppGames            Int[]
     userDisplayPoints   String
     oppDisplayPoints    String
     returned            Boolean?
-    fault               ServeFault?    @default(first)
-    side                PlayingSide?   @default(deuce)
+    fault               ServeFault?      @default(first)
+    side                PlayingSide?     @default(deuce)
     location            ShotLocations?
     firstServeLocation  ShotLocations?
     secondServeLocation ShotLocations?
     stroke              Stroke?
     method              Method?
     hitter              Hitter?
-    userReaction        String?
-    opponentReaction    String?
+    userReaction        MentalReactions?
+    opponentReaction    MentalReactions?
     pointNotes          String?
     matchId             Int
 }
@@ -152,4 +152,18 @@ enum ReturnStrokes {
     ace
     forehand
     backhand
+}
+
+enum MentalReactions {
+    shout
+    fist_pump
+    racket_smash
+    racket_throw
+    ball_smack
+    curse
+    shoe_smack
+    look_up
+    cry
+    none
+    other
 }

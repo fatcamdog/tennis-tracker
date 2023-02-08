@@ -65,6 +65,9 @@ model PointDetail {
     stroke              Stroke?
     method              Method?
     hitter              Hitter?
+    userReaction        String?
+    opponentReaction    String?
+    pointNotes          String?
     matchId             Int
 }
 

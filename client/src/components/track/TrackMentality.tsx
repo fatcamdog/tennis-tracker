@@ -34,6 +34,13 @@ const TrackMentality: FC = () => {
     setUserReactionStage(true);
   };
 
+  // handle user and opponent mental reactions
+  const handleMentalReaction = (reaction: string) => {
+    console.log(reaction);
+  };
+
+  const handlePointFinished = () => {};
+
   return (
     <div>
       <Timer match={match} duration={duration} setDuration={setDuration} />

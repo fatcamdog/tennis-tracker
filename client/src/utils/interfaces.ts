@@ -34,6 +34,9 @@ export interface IMatch {
   stroke?: string;
   firstServeLocation?: string;
   secondServeLocation?: string;
+  userReaction?: string;
+  opponentReation?: string;
+  pointNotes?: string;
 }
 
 export interface IPointDetails {
@@ -52,6 +55,9 @@ export interface IPointDetails {
   stroke?: string;
   firstServeLocation?: string;
   secondServeLocation?: string;
+  userReaction?: string;
+  opponentReation?: string;
+  pointNotes?: string;
 }
 
 export interface IMatchProps {

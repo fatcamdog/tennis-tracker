@@ -160,6 +160,9 @@ export const updateMatch = async (req: Request, res: Response) => {
       wasServing,
       firstServeLocation,
       secondServeLocation,
+      userReaction,
+      opponentReaction,
+      pointNotes,
     } = req.body;
 
     const match = await prisma.match.update({
@@ -201,6 +204,9 @@ export const updateMatch = async (req: Request, res: Response) => {
             hitter,
             firstServeLocation,
             secondServeLocation,
+            userReaction,
+            opponentReaction,
+            pointNotes,
           },
         },
       },

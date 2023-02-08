@@ -20,6 +20,8 @@ const TrackMentality: FC = () => {
 
   // point value variables
   const [pointWon, setPointWon] = useState<boolean>(false);
+  const [userReaction, setUserReaction] = useState<string>('');
+  const [opponentReaction, setOpponentReaction] = useState<string>('');
 
   const { match } = useAppSelector((state) => state.matches);
   const { user } = useAppSelector((state) => state.auth);
@@ -36,8 +38,20 @@ const TrackMentality: FC = () => {
 
   // handle user and opponent mental reactions
   const handleMentalReaction = (user: boolean, reaction: string) => {
-    console.log(user);
-    console.log(reaction);
+    // checking if user or opponent
+    if (user) {
+      // updating user reaction state
+      setUserReaction(reaction);
+      // going to opponent stage
+      setUserReactionStage(false);
+      setOpponentReactionStage(true);
+    } else {
+      // updating opponent reaction state
+      setOpponentReaction(reaction);
+      // going to pointNotesStage
+      setOpponentReactionStage(false);
+      setNotesStage(true);
+    }
   };
 
   const handlePointFinished = () => {};

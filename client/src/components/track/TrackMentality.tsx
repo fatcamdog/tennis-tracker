@@ -54,6 +54,7 @@ const TrackMentality: FC = () => {
     }
   };
 
+  // handle when point is finished
   const handlePointFinished = () => {};
 
   return (

@@ -1,7 +1,9 @@
 import { FC, useState } from 'react';
+import axios from 'axios';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
 import { trackMatch } from '../../redux/matches';
+import matchLogic from '../../utils/matchLogic';
 
 import Timer from './Timer';
 import PointWonStage from '../stages/mentality/PointWonStage';
@@ -59,7 +61,7 @@ const TrackMentality: FC = () => {
   // handle point notes
   const handlePointNotes = (skipped: boolean, note: string) => {
     //
-    if (!skipped) {
+    if (!skipped && note !== '') {
       // call point finished function with note
       handlePointFinished(pointWon, userReaction, opponentReaction, note);
     } else {
@@ -75,8 +77,6 @@ const TrackMentality: FC = () => {
     opponentReaction: string,
     note?: string
   ) => {
-    console.log(pointWon, userReaction, opponentReaction, note);
-
     // update local state
     dispatch(
       trackMatch({
@@ -86,6 +86,36 @@ const TrackMentality: FC = () => {
         side: match.side,
       })
     );
+
+    // send request to db
+    if (user) {
+      await axios.patch(
+        `http://localhost:4000/api/matches/${match.id}`,
+        matchLogic(
+          pointWon,
+          match,
+          duration,
+          false,
+          'double',
+          match.side!,
+          'net',
+          'ace',
+          'ace',
+          'serve',
+          'winner',
+          'user',
+          userReaction,
+          opponentReaction,
+          `${note && note}`
+        ),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+    }
 
     // reset for next point
     setNotesStage(false);

@@ -35,7 +35,7 @@ export interface IMatch {
   firstServeLocation?: string;
   secondServeLocation?: string;
   userReaction?: string;
-  opponentReation?: string;
+  opponentReaction?: string;
   pointNotes?: string;
 }
 

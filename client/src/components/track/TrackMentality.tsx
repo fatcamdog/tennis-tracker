@@ -54,8 +54,31 @@ const TrackMentality: FC = () => {
     }
   };
 
+  // handle point notes
+  const handlePointNotes = (skipped: boolean, note: string) => {
+    //
+    if (!skipped) {
+      // call point finished function with note
+      handlePointFinished(pointWon, userReaction, opponentReaction, note);
+    } else {
+      // call point finished function without note
+      handlePointFinished(pointWon, userReaction, opponentReaction);
+    }
+  };
+
   // handle when point is finished
-  const handlePointFinished = () => {};
+  const handlePointFinished = (
+    pointWon: boolean,
+    userReaction: string,
+    opponentReaction: string,
+    note?: string
+  ) => {
+    console.log(pointWon, userReaction, opponentReaction, note);
+
+    // reset for next point
+    setNotesStage(false);
+    setWonStage(true);
+  };
 
   return (
     <div>
@@ -87,7 +110,7 @@ const TrackMentality: FC = () => {
               ) : (
                 <>
                   {notesStage ? (
-                    <PointNotesStage />
+                    <PointNotesStage handlePointNotes={handlePointNotes} />
                   ) : (
                     <div>Something went wrong</div>
                   )}

@@ -1,15 +1,20 @@
-import { FC, useState } from 'react';
+import { FC, useState, FormEvent } from 'react';
 
-const PointNotesStage: FC = () => {
+import { IHandlePointNoteProps } from '../../../utils/interfaces';
+
+const PointNotesStage: FC<IHandlePointNoteProps> = ({ handlePointNotes }) => {
   const [note, setNote] = useState<string>('');
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handlePointNotes(false, note);
+  };
 
   return (
     <div>
       <p>Is there any additional info you would like to add?</p>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={note}
@@ -19,7 +24,12 @@ const PointNotesStage: FC = () => {
             Add
           </button>
         </form>
-        <button className="btn btn-accent">Skip</button>
+        <button
+          className="btn btn-accent"
+          onClick={() => handlePointNotes(true, '')}
+        >
+          Skip
+        </button>
       </div>
     </div>
   );

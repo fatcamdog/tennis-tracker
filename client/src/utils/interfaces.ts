@@ -174,6 +174,10 @@ export interface IHandleUserReactionProps {
   handleMentalReaction: (arg0: boolean, arg1: string) => void;
 }
 
+export interface IHandlePointNoteProps {
+  handlePointNotes: (arg0: boolean, arg1: string) => void;
+}
+
 // // Interface for court diagram statistics
 export interface IMatchUserStatsProps {
   match: IMatch;

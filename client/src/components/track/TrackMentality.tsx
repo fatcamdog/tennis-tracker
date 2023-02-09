@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxHooks';
+import { trackMatch } from '../../redux/matches';
 
 import Timer from './Timer';
 import PointWonStage from '../stages/mentality/PointWonStage';
@@ -25,6 +26,7 @@ const TrackMentality: FC = () => {
 
   const { match } = useAppSelector((state) => state.matches);
   const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   // handle whether point was won or lost
   const handlePointWon = (won: boolean) => {
@@ -67,13 +69,23 @@ const TrackMentality: FC = () => {
   };
 
   // handle when point is finished
-  const handlePointFinished = (
+  const handlePointFinished = async (
     pointWon: boolean,
     userReaction: string,
     opponentReaction: string,
     note?: string
   ) => {
     console.log(pointWon, userReaction, opponentReaction, note);
+
+    // update local state
+    dispatch(
+      trackMatch({
+        pointWon,
+        match,
+        duration,
+        side: match.side,
+      })
+    );
 
     // reset for next point
     setNotesStage(false);

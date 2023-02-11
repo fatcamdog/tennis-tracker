@@ -142,7 +142,7 @@ export interface IMatchDurationProps {
 // // Functions for updating serve point
 export interface IHandleServeLocationProps {
   handleServeLocation: (arg0: string, arg1: boolean) => void;
-  fault: string;
+  side: string;
 }
 
 export interface IHandleServeReturnedProps {

@@ -1,6 +1,8 @@
-import { MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 
-const ExactCourt = () => {
+import { IHandleShotLocationProps } from '../../utils/interfaces';
+
+const ExactCourt: FC<IHandleShotLocationProps> = ({ handleShotLocation }) => {
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     console.log(
       e.pageX - e.currentTarget.offsetLeft,

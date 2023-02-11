@@ -246,7 +246,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
       <Timer match={match} duration={duration} setDuration={setDuration} />
       {locationStage ? (
         // <RallyCourt handleShotLocation={handleShotLocation} />
-        <ExactCourt />
+        <ExactCourt handleShotLocation={handleShotLocation} />
       ) : (
         <>
           {hitterStage ? (

@@ -221,7 +221,10 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
           'ace',
           stroke,
           method,
-          hitter
+          hitter,
+          '',
+          '',
+          ''
         ),
         {
           headers: {

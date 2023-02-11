@@ -21,10 +21,10 @@ module.exports = {
         ],
       },
       gridTemplateColumns: {
-        court: '5rem 16rem 16rem 5rem',
+        court: '5rem 14rem 14rem 5rem',
       },
       gridTemplateRows: {
-        court: '18rem 18rem',
+        court: '20rem 20rem',
       },
     },
   },

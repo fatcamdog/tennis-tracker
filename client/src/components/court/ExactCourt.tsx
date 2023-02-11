@@ -4,10 +4,14 @@ import { IHandleShotLocationProps } from '../../utils/interfaces';
 
 const ExactCourt: FC<IHandleShotLocationProps> = ({ handleShotLocation }) => {
   const handleClick = (e: MouseEvent<HTMLElement>) => {
-    console.log(
-      e.pageX - e.currentTarget.offsetLeft,
-      e.pageY - e.currentTarget.offsetTop
-    );
+    let x = e.pageX - e.currentTarget.offsetLeft;
+    let y = e.pageY - e.currentTarget.offsetTop;
+
+    let cord = `${x}, ${y}`;
+
+    console.log(cord);
+
+    return handleShotLocation(cord, false);
   };
 
   return (

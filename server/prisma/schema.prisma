@@ -59,7 +59,7 @@ model PointDetail {
     returned            Boolean?
     fault               ServeFault?    @default(first)
     side                PlayingSide?   @default(deuce)
-    location            ShotLocations?
+    location            String?
     firstServeLocation  ShotLocations?
     secondServeLocation ShotLocations?
     stroke              Stroke?

@@ -212,7 +212,7 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
             // />
             <ExactServeCourt
               handleServeLocation={handleServeLocation}
-              side="ad"
+              side="deuce"
             />
           ) : (
             // <AdSide

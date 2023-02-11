@@ -86,12 +86,12 @@ export const ExactServeCourt: FC<IHandleServeLocationProps> = ({
       y < topYBoundary ||
       y > bottomYBoundary
     ) {
-      console.log('out');
       inPlay = false;
     } else {
-      console.log('in');
       inPlay = true;
     }
+
+    return handleServeLocation(cord, inPlay);
   };
 
   return (

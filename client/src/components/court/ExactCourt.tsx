@@ -29,7 +29,7 @@ const ExactCourt: FC<IHandleShotLocationProps> = ({ handleShotLocation }) => {
       inPlay = true;
     }
 
-    // return handleShotLocation(cord, inPlay);
+    return handleShotLocation(cord, inPlay);
   };
 
   return (

@@ -40,6 +40,8 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
 
   // handle when the user clicks on the tennis court diagram
   const handleShotLocation = (location: string, inPlay: boolean) => {
+    console.log(location, inPlay);
+
     // handle exception -> ace
     if (location === 'ace') {
       return handlePointFinish(

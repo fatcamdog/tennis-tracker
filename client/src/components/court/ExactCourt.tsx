@@ -27,10 +27,8 @@ export const ExactRallyCourt: FC<IHandleShotLocationProps> = ({
       y < topYBoundary ||
       y > bottomYBoundary
     ) {
-      console.log('out');
       inPlay = false;
     } else {
-      console.log('in');
       inPlay = true;
     }
 

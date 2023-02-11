@@ -8,7 +8,7 @@ import matchLogic from '../../utils/matchLogic';
 
 import Timer from './Timer';
 import { DeuceSide, AdSide } from '../court/ServeCourt';
-import { ExactServeCourt } from '../court/ExactCourt';
+import { ExactServeCourt, ExactRallyCourt } from '../court/ExactCourt';
 import { ReturnedCourt, UnreturnedCourt } from '../court/RallyCourt';
 import ReturnedStage from '../stages/starting/ReturnedStage';
 import StrokeStage from '../stages/starting/StrokeStage';
@@ -206,19 +206,11 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
       {serveLocationStage ? (
         <>
           {match.side === 'deuce' ? (
-            // <DeuceSide
-            //   handleServeLocation={handleServeLocation}
-            //   fault={serveFault}
-            // />
             <ExactServeCourt
               handleServeLocation={handleServeLocation}
               side="deuce"
             />
           ) : (
-            // <AdSide
-            //   handleServeLocation={handleServeLocation}
-            //   fault={serveFault}
-            // />
             <ExactServeCourt
               handleServeLocation={handleServeLocation}
               side="ad"
@@ -232,11 +224,11 @@ const TrackServe: FC<IMatchUserProps> = ({ match, user }) => {
           ) : (
             <>
               {returnLocationStage && shotReturned ? (
-                <ReturnedCourt handleShotLocation={handleReturnLocation} />
+                <ExactRallyCourt handleShotLocation={handleReturnLocation} />
               ) : (
                 <>
                   {returnLocationStage && !shotReturned ? (
-                    <UnreturnedCourt
+                    <ExactRallyCourt
                       handleShotLocation={handleReturnLocation}
                     />
                   ) : (

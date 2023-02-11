@@ -7,7 +7,7 @@ import { trackMatch } from '../../redux/matches';
 import matchLogic from '../../utils/matchLogic';
 
 import { RallyCourt } from '../court/RallyCourt';
-import ExactCourt from '../court/ExactCourt';
+import { ExactRallyCourt } from '../court/ExactCourt';
 import HitterStage from '../stages/rallying/HitterStage';
 import MethodStage from '../stages/rallying/MethodStage';
 import SideStage from '../stages/rallying/SideStage';
@@ -248,7 +248,7 @@ const TrackRally: FC<IMatchUserProps> = ({ match, user }) => {
       <Timer match={match} duration={duration} setDuration={setDuration} />
       {locationStage ? (
         // <RallyCourt handleShotLocation={handleShotLocation} />
-        <ExactCourt handleShotLocation={handleShotLocation} />
+        <ExactRallyCourt handleShotLocation={handleShotLocation} />
       ) : (
         <>
           {hitterStage ? (

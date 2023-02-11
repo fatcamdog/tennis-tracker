@@ -2,7 +2,9 @@ import { FC, MouseEvent } from 'react';
 
 import { IHandleShotLocationProps } from '../../utils/interfaces';
 
-const ExactCourt: FC<IHandleShotLocationProps> = ({ handleShotLocation }) => {
+export const ExactRallyCourt: FC<IHandleShotLocationProps> = ({
+  handleShotLocation,
+}) => {
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     let x: number = e.pageX - e.currentTarget.offsetLeft; // finding x cord
     let y: number = e.pageY - e.currentTarget.offsetTop; // finding y cord
@@ -48,5 +50,3 @@ const ExactCourt: FC<IHandleShotLocationProps> = ({ handleShotLocation }) => {
     </div>
   );
 };
-
-export default ExactCourt;

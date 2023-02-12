@@ -193,3 +193,7 @@ export interface IUserServingSideProps {
   user: boolean;
   side: string;
 }
+
+export interface IUserReturnProps {
+  user: boolean;
+}

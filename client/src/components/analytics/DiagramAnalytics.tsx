@@ -25,7 +25,7 @@ export const ServeDiagramAnalytics = () => {
           </div> */}
           <div>
             <p>Return Stats</p>
-            <ExactRallyStats />
+            <ExactRallyStats user={true} />
           </div>
         </div>
       </div>

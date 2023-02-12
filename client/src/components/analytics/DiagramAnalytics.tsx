@@ -8,6 +8,7 @@ import {
   ReturnStats,
   RallyCourtStats,
 } from '../court/CourtStats';
+import { ExactDeuceStats } from '../court/ExactCourtStats';
 import PlusMinus from '../court/PlusMinus';
 
 export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
@@ -18,20 +19,21 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
         <div>
           <div>
             <p>Deuce Side Stats</p>
-            <DeuceStats match={match} user={true} />
+            {/* <DeuceStats match={match} user={true} /> */}
+            <ExactDeuceStats />
           </div>
-          <div>
+          {/* <div>
             <p>Ad Side Stats</p>
             <AdStats match={match} user={true} />
           </div>
           <div>
             <p>Return Stats</p>
             <ReturnStats match={match} user={true} />
-          </div>
+          </div> */}
         </div>
       </div>
       <br />
-      <div>
+      {/* <div>
         <p>{match.opponent}</p>
         <div>
           <div>
@@ -47,7 +49,7 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
             <ReturnStats match={match} user={false} />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -55,8 +57,8 @@ export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
 export const ReturnDiagramAnalytics: FC = () => {
   return (
     <>
-      {/* <PlusMinus />
-      <br /> */}
+      <PlusMinus />
+      <br />
       <RallyCourtStats user={'user'} />
       <br />
       <RallyCourtStats user={'opponent'} />

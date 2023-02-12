@@ -34,10 +34,10 @@ export default function Analytics() {
               <div>
                 {match.trackingMode === 'starting' ? (
                   <div>
-                    <BasicAnalytics match={match} user={user!} />
+                    {/* <BasicAnalytics match={match} user={user!} />
                     <br />
                     <ServingStats match={match} user={user!} />
-                    <br />
+                    <br /> */}
                     <ServeDiagramAnalytics match={match} user={user!} />
                   </div>
                 ) : (

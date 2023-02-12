@@ -2,13 +2,8 @@ import { FC } from 'react';
 
 import { useAppSelector } from '../../hooks/reduxHooks';
 
-import {
-  DeuceStats,
-  AdStats,
-  ReturnStats,
-  RallyCourtStats,
-} from '../court/CourtStats';
-import { ExactServeStats } from '../court/ExactCourtStats';
+import { RallyCourtStats } from '../court/CourtStats';
+import { ExactServeStats, ExactRallyStats } from '../court/ExactCourtStats';
 import PlusMinus from '../court/PlusMinus';
 
 export const ServeDiagramAnalytics = () => {
@@ -20,18 +15,18 @@ export const ServeDiagramAnalytics = () => {
       <div>
         <p>{user?.name}</p>
         <div>
-          <div>
+          {/* <div>
             <p>Deuce Side Stats</p>
             <ExactServeStats user={true} side="deuce" />
           </div>
           <div>
             <p>Ad Side Stats</p>
             <ExactServeStats user={true} side="ad" />
-          </div>
-          {/* <div>
-            <p>Return Stats</p>
-            <ReturnStats match={match} user={true} />
           </div> */}
+          <div>
+            <p>Return Stats</p>
+            <ExactRallyStats />
+          </div>
         </div>
       </div>
       <br />

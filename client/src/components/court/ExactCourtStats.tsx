@@ -1,5 +1,6 @@
 import { useAppSelector } from '../../hooks/reduxHooks';
 
+// TODO make this function work for deuce and ad and count second serves and first serves
 export const ExactDeuceStats = () => {
   const { match } = useAppSelector((state) => state.matches);
 
@@ -9,7 +10,7 @@ export const ExactDeuceStats = () => {
         return (
           <div
             key={point.id}
-            className="z-50 absolute bg-yellow-200 p-2 rounded-full"
+            className="z-50 absolute bg-yellow-200 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative"
             style={{
               left: parseInt(point.firstServeLocation!.split(',')[0]),
               top: parseInt(point.firstServeLocation!.split(',')[1]),

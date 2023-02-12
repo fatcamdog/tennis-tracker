@@ -26,6 +26,9 @@ module.exports = {
       gridTemplateRows: {
         court: '20rem 20rem',
       },
+      translate: {
+        negative: '-50%',
+      },
     },
   },
   plugins: [require('daisyui'), require('@savvywombat/tailwindcss-grid-areas')],

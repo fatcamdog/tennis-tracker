@@ -11,7 +11,7 @@ export const ExactRallyCourt: FC<IHandleShotLocationProps> = ({
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     let x: number = e.pageX - e.currentTarget.offsetLeft; // finding x cord
     let y: number = e.pageY - e.currentTarget.offsetTop; // finding y cord
-    let cord: string = `${x}, ${y}`; // combining x and y cords
+    let cord: string = `${x},${y}`; // combining x and y cords
     let inPlay: boolean = false; // declaring in play variable
 
     // defining court boundaries based on coordinates
@@ -59,7 +59,7 @@ export const ExactServeCourt: FC<IHandleServeLocationProps> = ({
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     let x: number = e.pageX - e.currentTarget.offsetLeft; // finding x cord
     let y: number = e.pageY - e.currentTarget.offsetTop; // finding y cord
-    let cord: string = `${x}, ${y}`; // combining x and y cords
+    let cord: string = `${x},${y}`; // combining x and y cords
     let inPlay: boolean = false; // declaring in play variable
 
     // defining court boundaries based on coordinates

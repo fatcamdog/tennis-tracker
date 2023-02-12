@@ -40,6 +40,7 @@ export interface IMatch {
 }
 
 export interface IPointDetails {
+  id: string;
   won?: boolean;
   method?: string;
   hitter?: string;

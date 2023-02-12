@@ -188,3 +188,8 @@ export interface IMatchUserStatsProps {
 export interface IUserStatsProps {
   user: string;
 }
+
+export interface IUserServingSideProps {
+  user: boolean;
+  side: string;
+}

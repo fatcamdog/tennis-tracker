@@ -8,7 +8,7 @@ import {
   ReturnStats,
   RallyCourtStats,
 } from '../court/CourtStats';
-import { ExactDeuceStats } from '../court/ExactCourtStats';
+import { ExactServeStats } from '../court/ExactCourtStats';
 import PlusMinus from '../court/PlusMinus';
 
 export const ServeDiagramAnalytics = () => {
@@ -23,7 +23,7 @@ export const ServeDiagramAnalytics = () => {
           <div>
             <p>Deuce Side Stats</p>
             {/* <DeuceStats match={match} user={true} /> */}
-            <ExactDeuceStats />
+            <ExactServeStats user={true} side="deuce" />
           </div>
           {/* <div>
             <p>Ad Side Stats</p>

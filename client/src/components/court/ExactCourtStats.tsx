@@ -24,15 +24,7 @@ export const ExactServeStats: FC<IUserServingSideProps> = ({ user, side }) => {
                   }}
                   data-tip={`First Serve | ${
                     point.fault === 'first' ? 'In' : 'Out'
-                  } | ${point.won ? 'Won' : 'Lost'} | ${
-                    point.won
-                      ? `${match.pointDetails[index - 1].userDisplayPoints}-${
-                          point.oppDisplayPoints
-                        }`
-                      : `${point.userDisplayPoints}-${
-                          match.pointDetails[index - 1].oppDisplayPoints
-                        }`
-                  }`}
+                  } | ${point.won ? 'Won' : 'Lost'}`}
                 ></div>
                 <div
                   className="z-50 absolute bg-red-600 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative tooltip"
@@ -42,15 +34,7 @@ export const ExactServeStats: FC<IUserServingSideProps> = ({ user, side }) => {
                   }}
                   data-tip={`Second Serve | ${
                     point.fault === 'second' ? 'In' : 'Out'
-                  } | ${point.won ? 'Won' : 'Lost'} | ${
-                    point.won
-                      ? `${match.pointDetails[index - 1].userDisplayPoints}-${
-                          point.oppDisplayPoints
-                        }`
-                      : `${point.userDisplayPoints}-${
-                          match.pointDetails[index - 1].oppDisplayPoints
-                        }`
-                  }`}
+                  } | ${point.won ? 'Won' : 'Lost'}`}
                 ></div>
               </div>
             );
@@ -65,15 +49,7 @@ export const ExactServeStats: FC<IUserServingSideProps> = ({ user, side }) => {
                 }}
                 data-tip={`First Serve | ${
                   point.fault === 'first' ? 'In' : 'Out'
-                } | ${point.won ? 'Won' : 'Lost'} | ${
-                  point.won
-                    ? `${match.pointDetails[index - 1].userDisplayPoints}-${
-                        point.oppDisplayPoints
-                      }`
-                    : `${point.userDisplayPoints}-${
-                        match.pointDetails[index - 1].oppDisplayPoints
-                      }`
-                }`}
+                } | ${point.won ? 'Won' : 'Lost'}`}
               ></div>
             );
           }
@@ -96,6 +72,22 @@ export const ExactRallyStats: FC<IUserReturnProps> = ({ user }) => {
 
   return (
     <div className="bg-green-500 p-32 flex justify-center relative">
+      {match.pointDetails.map((point, index) => {
+        if (point.location !== 'bypass' && user !== point.serving) {
+          return (
+            <div
+              key={`${point.id}`}
+              className="z-50 absolute bg-yellow-200 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative tooltip"
+              style={{
+                left: parseInt(point.location!.split(',')[0]),
+                top: parseInt(point.location!.split(',')[1]),
+              }}
+              data-tip={point.won ? 'Won' : 'Lost'}
+            ></div>
+          );
+        }
+      })}
+
       <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">
         <div className="relative bg-blue-400 outline outline-2 outline-white grid-in-left-alley"></div>
         <div className="flex gap-2 p-2 pr-0 bg-blue-400 grid-in-left-behind"></div>

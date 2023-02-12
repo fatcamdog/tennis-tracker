@@ -15,14 +15,14 @@ export const ServeDiagramAnalytics = () => {
       <div>
         <p>{user?.name}</p>
         <div>
-          {/* <div>
+          <div>
             <p>Deuce Side Stats</p>
             <ExactServeStats user={true} side="deuce" />
           </div>
           <div>
             <p>Ad Side Stats</p>
             <ExactServeStats user={true} side="ad" />
-          </div> */}
+          </div>
           <div>
             <p>Return Stats</p>
             <ExactRallyStats user={true} />
@@ -30,23 +30,23 @@ export const ServeDiagramAnalytics = () => {
         </div>
       </div>
       <br />
-      {/* <div>
+      <div>
         <p>{match.opponent}</p>
         <div>
           <div>
             <p>Deuce Side Stats</p>
-            <DeuceStats match={match} user={false} />
+            <ExactServeStats user={false} side="deuce" />
           </div>
           <div>
             <p>Ad Side Stats</p>
-            <AdStats match={match} user={false} />
+            <ExactServeStats user={false} side="ad" />
           </div>
           <div>
             <p>Return Stats</p>
-            <ReturnStats match={match} user={false} />
+            <ExactRallyStats user={false} />
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

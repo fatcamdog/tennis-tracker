@@ -10,26 +10,70 @@ export const ExactServeStats: FC<IUserServingSideProps> = ({ user, side }) => {
 
   return (
     <div className="bg-green-500 p-32 flex justify-center relative">
-      {match.pointDetails.map((point) => {
-        if (point.side === side) {
+      {match.pointDetails.map((point, index) => {
+        if (point.side === side && point.serving === user) {
           if (point.secondServeLocation !== 'bypass') {
             return (
               <div key={point.id}>
                 <div
-                  className="z-50 absolute bg-yellow-200 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative"
+                  className="z-50 absolute bg-yellow-200 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative tooltip"
                   style={{
                     left: parseInt(point.firstServeLocation!.split(',')[0]),
                     top: parseInt(point.firstServeLocation!.split(',')[1]),
                   }}
+                  data-tip={`First Serve | ${
+                    point.fault === 'first' ? 'In' : 'Out'
+                  } | ${point.won ? 'Won' : 'Lost'} | ${
+                    point.won
+                      ? `${match.pointDetails[index - 1].userDisplayPoints}-${
+                          point.oppDisplayPoints
+                        }`
+                      : `${point.userDisplayPoints}-${
+                          match.pointDetails[index - 1].oppDisplayPoints
+                        }`
+                  }`}
                 ></div>
                 <div
-                  className="z-50 absolute bg-red-600 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative"
+                  className="z-50 absolute bg-red-600 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative tooltip"
                   style={{
                     left: parseInt(point.secondServeLocation!.split(',')[0]),
                     top: parseInt(point.secondServeLocation!.split(',')[1]),
                   }}
+                  data-tip={`Second Serve | ${
+                    point.fault === 'second' ? 'In' : 'Out'
+                  } | ${point.won ? 'Won' : 'Lost'} | ${
+                    point.won
+                      ? `${match.pointDetails[index - 1].userDisplayPoints}-${
+                          point.oppDisplayPoints
+                        }`
+                      : `${point.userDisplayPoints}-${
+                          match.pointDetails[index - 1].oppDisplayPoints
+                        }`
+                  }`}
                 ></div>
               </div>
+            );
+          } else {
+            return (
+              <div
+                key={point.id}
+                className="z-50 absolute bg-yellow-200 p-2 rounded-full opacity-75 translate-x-1/2 translate-y-negative tooltip"
+                style={{
+                  left: parseInt(point.firstServeLocation!.split(',')[0]),
+                  top: parseInt(point.firstServeLocation!.split(',')[1]),
+                }}
+                data-tip={`First Serve | ${
+                  point.fault === 'first' ? 'In' : 'Out'
+                } | ${point.won ? 'Won' : 'Lost'} | ${
+                  point.won
+                    ? `${match.pointDetails[index - 1].userDisplayPoints}-${
+                        point.oppDisplayPoints
+                      }`
+                    : `${point.userDisplayPoints}-${
+                        match.pointDetails[index - 1].oppDisplayPoints
+                      }`
+                }`}
+              ></div>
             );
           }
         }

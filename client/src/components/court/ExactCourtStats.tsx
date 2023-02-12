@@ -3,8 +3,6 @@ import { FC } from 'react';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { IUserServingSideProps } from '../../utils/interfaces';
 
-// TODO make this function work for deuce and ad and count second serves and first serves
-// TODO add hover effect that shows some details for the point
 export const ExactServeStats: FC<IUserServingSideProps> = ({ user, side }) => {
   const { match } = useAppSelector((state) => state.matches);
 
@@ -88,4 +86,8 @@ export const ExactServeStats: FC<IUserServingSideProps> = ({ user, side }) => {
       </div>
     </div>
   );
+};
+
+export const ExactRallyStats = () => {
+  return <div>Exact rally stats</div>;
 };

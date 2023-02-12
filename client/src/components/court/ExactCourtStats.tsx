@@ -1,4 +1,8 @@
+import { useAppSelector } from '../../hooks/reduxHooks';
+
 export const ExactDeuceStats = () => {
+  const { match } = useAppSelector((state) => state.matches);
+
   return (
     <div className="bg-green-500 p-32 flex justify-center">
       <div className="relative after:content-[''] after:px-px after:py-2 after:absolute after:top-0 after:left-1/2 after:bg-white grid grid-areas-court grid-cols-court grid-rows-court w-fit outline outline-2 outline-white">

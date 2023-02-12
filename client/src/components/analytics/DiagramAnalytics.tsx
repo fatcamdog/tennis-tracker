@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IMatchUserProps } from '../../utils/interfaces';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 import {
   DeuceStats,
@@ -11,11 +11,14 @@ import {
 import { ExactDeuceStats } from '../court/ExactCourtStats';
 import PlusMinus from '../court/PlusMinus';
 
-export const ServeDiagramAnalytics: FC<IMatchUserProps> = ({ match, user }) => {
+export const ServeDiagramAnalytics = () => {
+  const { match } = useAppSelector((state) => state.matches);
+  const { user } = useAppSelector((state) => state.auth);
+
   return (
     <div>
       <div>
-        <p>{user.name}</p>
+        <p>{user?.name}</p>
         <div>
           <div>
             <p>Deuce Side Stats</p>

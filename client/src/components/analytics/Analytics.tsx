@@ -38,7 +38,7 @@ export default function Analytics() {
                     <br />
                     <ServingStats match={match} user={user!} />
                     <br /> */}
-                    <ServeDiagramAnalytics match={match} user={user!} />
+                    <ServeDiagramAnalytics />
                   </div>
                 ) : (
                   <>

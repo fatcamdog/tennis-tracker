@@ -7,9 +7,7 @@ import { trackMatch } from '../../redux/matches';
 import matchLogic from '../../utils/matchLogic';
 
 import Timer from './Timer';
-import { DeuceSide, AdSide } from '../court/ServeCourt';
 import { ExactServeCourt, ExactRallyCourt } from '../court/ExactCourt';
-import { ReturnedCourt, UnreturnedCourt } from '../court/RallyCourt';
 import ReturnedStage from '../stages/starting/ReturnedStage';
 import StrokeStage from '../stages/starting/StrokeStage';
 import PointWonStage from '../stages/starting/PointWonStage';

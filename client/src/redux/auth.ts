@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { IUserState } from '../utils/interfaces';
 
-// initial authstate set to nu.l
+// initial authstate set to null
 const initialState: IUserState = {
   user: null,
 };

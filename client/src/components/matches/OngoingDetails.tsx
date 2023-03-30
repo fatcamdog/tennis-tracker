@@ -7,27 +7,35 @@ import calculateMinsAndHours from '../../utils/minsAndHours';
 // render detailed data for ongoing matches
 const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
   return (
-    <div className="">
-      <div className="">
-        <Link className="" data-tip="Track" to={`/matches/track/${match.id}`}>
+    <div className="bg-neutral rounded-lg flex flex-col mb-3">
+      <div className="flex gap-3 align-middle justify-around mt-3">
+        <Link
+          className="text-accent hover:text-black"
+          to={`/matches/track/${match.id}`}
+        >
           Track
         </Link>
-        <Link className="" data-tip="Edit" to={`/matches/edit/${match.id}`}>
-          Edit
-        </Link>
-        <Link className="" data-tip="Delete" to={`/matches/edit/${match.id}`}>
-          Delete
-        </Link>
         <Link
-          className=""
-          data-tip="Delete"
+          className="text-accent hover:text-black"
           to={`/matches/analytics/${match.id}`}
         >
           Analytics
         </Link>
+        <Link
+          className="text-accent hover:text-black"
+          to={`/matches/edit/${match.id}`}
+        >
+          Edit
+        </Link>
+        <Link
+          className="text-accent hover:text-black"
+          to={`/matches/edit/${match.id}`}
+        >
+          Delete
+        </Link>
       </div>
-      <div>
-        <div className="">
+      <div className="p-5">
+        <div className="flex justify-between">
           <p className={`${match.serving ? 'flex items-center gap-x-3' : ''}`}>
             {user.name}
             {match.serving ? (
@@ -48,7 +56,7 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
               <></>
             )}
           </p>
-          <div className="tabular-nums">
+          <div className="tabular-nums flex gap-3 mr-20">
             <b className="">
               {parseInt(match.userDisplayPoints) !== 0
                 ? match.userDisplayPoints
@@ -59,7 +67,7 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
             ))}
           </div>
         </div>
-        <div className="">
+        <div className="flex justify-between">
           <p className={`${!match.serving ? 'flex items-center gap-x-3' : ''}`}>
             {match.opponent}
             {!match.serving ? (
@@ -80,7 +88,7 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
               <></>
             )}
           </p>
-          <div className="tabular-nums">
+          <div className="tabular-nums flex gap-3 mr-20">
             <b className="">
               {parseInt(match.oppDisplayPoints) !== 0
                 ? match.oppDisplayPoints
@@ -92,9 +100,9 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="flex justify-around mb-3">
         <div>
-          <p className="">Date</p>
+          <p className="text-stone-300">Date</p>
           <p>
             {new Date(match.createdAt).toLocaleDateString('en-us', {
               year: 'numeric',
@@ -104,11 +112,11 @@ const OngoingDetails: FC<IMatchUserProps> = ({ match, user }) => {
           </p>
         </div>
         <div>
-          <p className="">Duration</p>
+          <p className="text-stone-300">Duration</p>
           <p>{calculateMinsAndHours(match.duration)}</p>
         </div>
         <div>
-          <p className="">Tracking Mode</p>
+          <p className="text-stone-300">Tracking Mode</p>
           <p>
             {match.trackingMode.charAt(0).toUpperCase() +
               match.trackingMode.slice(1)}

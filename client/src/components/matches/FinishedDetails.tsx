@@ -9,7 +9,7 @@ const FinishedDetails: FC<IMatchUserProps> = ({ match, user }) => {
   return (
     <Link
       to={`/matches/${match.id}`}
-      className="flex items-center gap-5 p-5 transition-transform bg-neutral rounded-xl hover:scale-105"
+      className="flex items-center gap-5 p-5 transition-transform bg-neutral rounded-xl hover:scale-105 mt-1"
     >
       {match.won ? (
         <h3 className="p-2 font-semibold rounded text-success outline outline-2 outline-success w-fit">

@@ -13,12 +13,6 @@ export default function Matches() {
   // calls custom hook to get loading and error state
   const { loading, error } = useFetch('http://localhost:4000/api/matches');
 
-  const calculateIndex = (index: number): string => {
-    if (index < 0) return `#${(ongoingMatches.length - 1).toString()}`;
-    if (index >= ongoingMatches.length) return '#0';
-    return `#${index.toString()}`;
-  };
-
   return (
     <div className="flex justify-around p-10">
       {/* Display all ongoing matches in an image carousel */}
@@ -44,31 +38,6 @@ export default function Matches() {
                         />
                       ))}
                     </div>
-                    {/* <div className="w-full max-w-lg gap-10 carousel">
-                      {ongoingMatches.map((match, index) => (
-                        <div
-                          className="relative carousel-item"
-                          id={index.toString()}
-                          key={match.id}
-                        >
-                          <OngoingDetails match={match} user={user!} />
-                          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a
-                              href={calculateIndex(index - 1)}
-                              className="border-none btn btn-circle btn-sm hover:bg-accent"
-                            >
-                              ❮
-                            </a>
-                            <a
-                              href={calculateIndex(index + 1)}
-                              className="border-none btn btn-circle btn-sm hover:bg-accent"
-                            >
-                              ❯
-                            </a>
-                          </div>
-                        </div>
-                      ))}
-                    </div> */}
                   </div>
                 ) : (
                   <></>

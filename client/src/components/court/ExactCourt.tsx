@@ -89,6 +89,8 @@ export const ExactServeCourt: FC<IHandleServeLocationProps> = ({
       inPlay = true;
     }
 
+    console.log(side, inPlay);
+
     return handleServeLocation(cord, inPlay);
   };
 
